@@ -63,3 +63,19 @@ streamingcast inspect --manifest /absolute/local/manifest.json \
 [수학/공학 계약](docs/DESIGN.md), [실측 결과](evidence/proof.json)를 구분하여 읽는다.
 현재 시험 통과는 실제 기상성능이나 전지구 장기 안정성을 인증하지 않는다.
 작업 브랜치와 PR로 검토한다. 무거운 CI나 자동 병합은 추가하지 않았다.
+
+
+## PR #2 검토 반영 및 P0.1 확장
+
+[수정·확장 기록](docs/REVIEW_FIX.md)에 변경점과 실제 시험 범위를 명시한다.
+107개 회귀시험, `-O` 실패 차단, 불변 snapshot, 발행별 파일 검사, 내용해시 산출물 경로를 추가했다.
+`inspect`는 메타데이터를 등록한 뒤 선택된 파일만 읽고, `check-catalog`는 모든 파일을 검사한다.
+현재 demo의 `forecast.npz`는 편의용 복사본이며 원장에는 `artifacts/sha256/...` 경로를 등록한다.
+새 SI/native/관측 연결부와 내부 dt 세분은 4변수 제조계만 대상으로 한다.
+
+```bash
+python scripts/prove_expansion.py --out runs/expansion.json
+```
+
+기존 `evidence/proof.json`, `evidence/source_files.json`은 초기 P0의 역사적 기록이다.
+현재 실행·소스 해시는 `evidence/review_fix/`를 확인한다. 실제 기상성능과 B200 승인은 보류한다.
