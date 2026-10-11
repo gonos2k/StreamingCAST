@@ -1,0 +1,18 @@
+{
+  "validated_at_utc": "2026-10-11T15:06:44.070040+00:00",
+  "status": "PASS",
+  "checks": {
+    "pinned_schema_and_templates": "PASS",
+    "content_pages": 14,
+    "wiki_link_lint": "PASS",
+    "markdown_pages_checked": 27,
+    "graph_source_hashes": 30,
+    "graph_policy_hashes": 2,
+    "immutable_source_hashes": 9,
+    "graph_endpoints": "PASS",
+    "graph_nodes": 256,
+    "graph_edges": 632,
+    "report_mirror": "PASS"
+  },
+  "scope": "Knowledge artifacts only; no weather skill or full ERA5 payload validation."
+}
