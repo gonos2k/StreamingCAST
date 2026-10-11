@@ -1,0 +1,176 @@
+{
+  "schema": "streamingcast-external-benchmark-catalog-v1",
+  "as_of": "2026-10-11",
+  "purpose": "External historical references. No StreamingCAST forecast skill has been measured here.",
+  "sources": {
+    "arches_table1_2020": {
+      "title": "ArchesWeatherGen: Skillful and compute-efficient probabilistic weather forecasting with machine learning",
+      "authors": "Couairon et al.",
+      "doi": "10.1126/sciadv.adx2372",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13101865/",
+      "publication_date": "2026-04-22",
+      "locator": "Table 1; Materials and Methods",
+      "license": "CC-BY-4.0",
+      "acquired": "2026-10-11",
+      "evidence_class": "primary_paper_table_transcription",
+      "period": "2020",
+      "initialization_hours_utc": [
+        0,
+        12
+      ],
+      "evaluation_grid_degrees": 1.5,
+      "region": "global",
+      "lead_hours": [
+        24
+      ],
+      "target": "ERA5 stated in paper; per-baseline raw evaluation lineage not independently decoded",
+      "raw_forecasts_recomputed_here": false,
+      "raw_metric_files_decoded_here": false,
+      "precision": "Published rounded values retained; do not infer additional precision.",
+      "not_imported": [
+        "SP column: label vs mean-sea-level-pressure semantics requires resolution.",
+        "Training cost and native resolution columns: not portable B200 costs; some labels need confirmation."
+      ],
+      "unknown_for_local_comparison": [
+        "checkpoint digests",
+        "exact sample hashes",
+        "mask/weights hashes",
+        "aggregation code revision"
+      ],
+      "allowed_use": "historical reference and target range only; never automatic release approval"
+    },
+    "hydro_wet90_2020": {
+      "title": "An extension of WeatherBench 2 to binary hydroclimatic forecasts",
+      "authors": "Zhao, Li, Tu and Chen",
+      "doi": "10.5194/gmd-18-5781-2025",
+      "url": "https://gmd.copernicus.org/articles/18/5781/2025/gmd-18-5781-2025.html",
+      "publication_date": "2025-09-08",
+      "locator": "Section 6, Conclusions; sections 2.2 and 3.1",
+      "license": "CC-BY-4.0",
+      "acquired": "2026-10-11",
+      "evidence_class": "primary_paper_reported_result",
+      "period": "2020",
+      "initialization_hours_utc": [
+        0,
+        12
+      ],
+      "evaluation_grid_degrees": 1.5,
+      "region": "global",
+      "target": "ERA5 precipitation",
+      "temporal_statistic": "24h accumulated precipitation",
+      "event_definition": "Grid-specific TP24h > 90th percentile estimated from 2020 target data",
+      "threshold_fit_period": "2020 (same year as evaluation; historical retrospective protocol)",
+      "metric_definition": "ROCSS = 2 * AUROC - 1; higher is better; NOT accuracy or detection probability",
+      "raw_forecasts_recomputed_here": false,
+      "raw_metric_files_decoded_here": false,
+      "allowed_use": "Historical extreme-event reference only. Prospective thresholds must use training/calibration data; results then use a new protocol ID.",
+      "unknown_for_local_comparison": [
+        "exact 24h lead endpoint convention in raw artifact",
+        "checkpoint digests",
+        "sample hashes"
+      ]
+    }
+  },
+  "comparability": "No row is an operational approval threshold. A matching local re-evaluation and uncertainty are required.",
+  "acquisition_limits": [
+    "WeatherBench official guide identifies gs://weatherbench2/benchmark_results; direct GCS score retrieval and local network requests were unsuccessful in this run.",
+    "60 RMSE and 3 ROCSS values were transcribed from primary publication tables/text, not digitized from figures.",
+    "GenCast NetCDF locations and Git blob IDs were inspected; a base64 response was returned but was not fully decoded/validated locally. No GenCast numeric scores are registered.",
+    "AIFS v2, FourCastNet 3 and Pangu 1h are comparison candidates; no newly computed score is claimed."
+  ],
+  "raw_score_locators": [
+    {
+      "name": "WeatherBench precomputed results",
+      "url": "gs://weatherbench2/benchmark_results",
+      "documentation": "https://weatherbench-x.readthedocs.io/en/latest/benchmark.html",
+      "status": "LOCATOR_CONFIRMED_NOT_DOWNLOADED"
+    },
+    {
+      "name": "GenCast 0.25 ensemble metrics",
+      "repository": "INRIA/geoarches",
+      "path": "paper/results/gencast_0p25deg/test-multistep=10-era5_ensemble_metrics.nc",
+      "git_blob_sha1": "7be4a898119e5db1e59c76ab8ff50ed7d2685e6a",
+      "bytes": 15751,
+      "status": "INDEXED_NOT_LOCALLY_DECODED"
+    },
+    {
+      "name": "GenCast 1 degree ensemble metrics",
+      "repository": "INRIA/geoarches",
+      "path": "paper/results/gencast_1deg/test-multistep=10-era5_ensemble_metrics.nc",
+      "git_blob_sha1": "fb00f31d615c7ec91647a551513f03a963dd45f1",
+      "bytes": 15751,
+      "status": "INDEXED_NOT_LOCALLY_DECODED"
+    }
+  ],
+  "records": [
+    {"source_id": "arches_table1_2020", "model": "IFS HRES", "metric": "RMSE", "variable": "geopotential", "level_hpa": 500, "lead_hours": 24, "units": "m2 s-2", "value": 42.3},
+    {"source_id": "arches_table1_2020", "model": "IFS HRES", "metric": "RMSE", "variable": "temperature", "level_hpa": 850, "lead_hours": 24, "units": "K", "value": 0.625},
+    {"source_id": "arches_table1_2020", "model": "IFS HRES", "metric": "RMSE", "variable": "specific_humidity", "level_hpa": 700, "lead_hours": 24, "units": "g kg-1", "value": 0.556},
+    {"source_id": "arches_table1_2020", "model": "IFS HRES", "metric": "RMSE", "variable": "u", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.186},
+    {"source_id": "arches_table1_2020", "model": "IFS HRES", "metric": "RMSE", "variable": "v", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.206},
+    {"source_id": "arches_table1_2020", "model": "IFS HRES", "metric": "RMSE", "variable": "t2m", "level_hpa": null, "lead_hours": 24, "units": "K", "value": 0.513},
+    {"source_id": "arches_table1_2020", "model": "IFS HRES", "metric": "RMSE", "variable": "u10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.833},
+    {"source_id": "arches_table1_2020", "model": "IFS HRES", "metric": "RMSE", "variable": "v10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.872},
+    {"source_id": "arches_table1_2020", "model": "Pangu-Weather", "metric": "RMSE", "variable": "geopotential", "level_hpa": 500, "lead_hours": 24, "units": "m2 s-2", "value": 44.31},
+    {"source_id": "arches_table1_2020", "model": "Pangu-Weather", "metric": "RMSE", "variable": "temperature", "level_hpa": 850, "lead_hours": 24, "units": "K", "value": 0.62},
+    {"source_id": "arches_table1_2020", "model": "Pangu-Weather", "metric": "RMSE", "variable": "specific_humidity", "level_hpa": 700, "lead_hours": 24, "units": "g kg-1", "value": 0.538},
+    {"source_id": "arches_table1_2020", "model": "Pangu-Weather", "metric": "RMSE", "variable": "u", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.166},
+    {"source_id": "arches_table1_2020", "model": "Pangu-Weather", "metric": "RMSE", "variable": "v", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.191},
+    {"source_id": "arches_table1_2020", "model": "Pangu-Weather", "metric": "RMSE", "variable": "t2m", "level_hpa": null, "lead_hours": 24, "units": "K", "value": 0.57},
+    {"source_id": "arches_table1_2020", "model": "Pangu-Weather", "metric": "RMSE", "variable": "u10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.728},
+    {"source_id": "arches_table1_2020", "model": "Pangu-Weather", "metric": "RMSE", "variable": "v10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.759},
+    {"source_id": "arches_table1_2020", "model": "NeuralGCM", "metric": "RMSE", "variable": "geopotential", "level_hpa": 500, "lead_hours": 24, "units": "m2 s-2", "value": 37.94},
+    {"source_id": "arches_table1_2020", "model": "NeuralGCM", "metric": "RMSE", "variable": "temperature", "level_hpa": 850, "lead_hours": 24, "units": "K", "value": 0.547},
+    {"source_id": "arches_table1_2020", "model": "NeuralGCM", "metric": "RMSE", "variable": "specific_humidity", "level_hpa": 700, "lead_hours": 24, "units": "g kg-1", "value": 0.488},
+    {"source_id": "arches_table1_2020", "model": "NeuralGCM", "metric": "RMSE", "variable": "u", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.05},
+    {"source_id": "arches_table1_2020", "model": "NeuralGCM", "metric": "RMSE", "variable": "v", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.071},
+    {"source_id": "arches_table1_2020", "model": "FuXi", "metric": "RMSE", "variable": "geopotential", "level_hpa": 500, "lead_hours": 24, "units": "m2 s-2", "value": 40.08},
+    {"source_id": "arches_table1_2020", "model": "FuXi", "metric": "RMSE", "variable": "temperature", "level_hpa": 850, "lead_hours": 24, "units": "K", "value": 0.548},
+    {"source_id": "arches_table1_2020", "model": "FuXi", "metric": "RMSE", "variable": "u", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.034},
+    {"source_id": "arches_table1_2020", "model": "FuXi", "metric": "RMSE", "variable": "v", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.055},
+    {"source_id": "arches_table1_2020", "model": "FuXi", "metric": "RMSE", "variable": "t2m", "level_hpa": null, "lead_hours": 24, "units": "K", "value": 0.532},
+    {"source_id": "arches_table1_2020", "model": "FuXi", "metric": "RMSE", "variable": "u10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.66},
+    {"source_id": "arches_table1_2020", "model": "FuXi", "metric": "RMSE", "variable": "v10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.688},
+    {"source_id": "arches_table1_2020", "model": "GraphCast", "metric": "RMSE", "variable": "geopotential", "level_hpa": 500, "lead_hours": 24, "units": "m2 s-2", "value": 39.78},
+    {"source_id": "arches_table1_2020", "model": "GraphCast", "metric": "RMSE", "variable": "temperature", "level_hpa": 850, "lead_hours": 24, "units": "K", "value": 0.519},
+    {"source_id": "arches_table1_2020", "model": "GraphCast", "metric": "RMSE", "variable": "specific_humidity", "level_hpa": 700, "lead_hours": 24, "units": "g kg-1", "value": 0.474},
+    {"source_id": "arches_table1_2020", "model": "GraphCast", "metric": "RMSE", "variable": "u", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.0},
+    {"source_id": "arches_table1_2020", "model": "GraphCast", "metric": "RMSE", "variable": "v", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.02},
+    {"source_id": "arches_table1_2020", "model": "GraphCast", "metric": "RMSE", "variable": "t2m", "level_hpa": null, "lead_hours": 24, "units": "K", "value": 0.511},
+    {"source_id": "arches_table1_2020", "model": "GraphCast", "metric": "RMSE", "variable": "u10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.655},
+    {"source_id": "arches_table1_2020", "model": "GraphCast", "metric": "RMSE", "variable": "v10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.683},
+    {"source_id": "arches_table1_2020", "model": "Stormer", "metric": "RMSE", "variable": "geopotential", "level_hpa": 500, "lead_hours": 24, "units": "m2 s-2", "value": 45.12},
+    {"source_id": "arches_table1_2020", "model": "Stormer", "metric": "RMSE", "variable": "temperature", "level_hpa": 850, "lead_hours": 24, "units": "K", "value": 0.607},
+    {"source_id": "arches_table1_2020", "model": "Stormer", "metric": "RMSE", "variable": "specific_humidity", "level_hpa": 700, "lead_hours": 24, "units": "g kg-1", "value": 0.527},
+    {"source_id": "arches_table1_2020", "model": "Stormer", "metric": "RMSE", "variable": "u", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.138},
+    {"source_id": "arches_table1_2020", "model": "Stormer", "metric": "RMSE", "variable": "v", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.156},
+    {"source_id": "arches_table1_2020", "model": "Stormer", "metric": "RMSE", "variable": "t2m", "level_hpa": null, "lead_hours": 24, "units": "K", "value": 0.57},
+    {"source_id": "arches_table1_2020", "model": "Stormer", "metric": "RMSE", "variable": "u10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.726},
+    {"source_id": "arches_table1_2020", "model": "Stormer", "metric": "RMSE", "variable": "v10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.76},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-S", "metric": "RMSE", "variable": "geopotential", "level_hpa": 500, "lead_hours": 24, "units": "m2 s-2", "value": 48.92},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-S", "metric": "RMSE", "variable": "temperature", "level_hpa": 850, "lead_hours": 24, "units": "K", "value": 0.65},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-S", "metric": "RMSE", "variable": "specific_humidity", "level_hpa": 700, "lead_hours": 24, "units": "g kg-1", "value": 0.542},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-S", "metric": "RMSE", "variable": "u", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.289},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-S", "metric": "RMSE", "variable": "v", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.325},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-S", "metric": "RMSE", "variable": "t2m", "level_hpa": null, "lead_hours": 24, "units": "K", "value": 0.562},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-S", "metric": "RMSE", "variable": "u10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.833},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-S", "metric": "RMSE", "variable": "v10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.873},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-M", "metric": "RMSE", "variable": "geopotential", "level_hpa": 500, "lead_hours": 24, "units": "m2 s-2", "value": 44.96},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-M", "metric": "RMSE", "variable": "temperature", "level_hpa": 850, "lead_hours": 24, "units": "K", "value": 0.615},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-M", "metric": "RMSE", "variable": "specific_humidity", "level_hpa": 700, "lead_hours": 24, "units": "g kg-1", "value": 0.527},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-M", "metric": "RMSE", "variable": "u", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.219},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-M", "metric": "RMSE", "variable": "v", "level_hpa": 850, "lead_hours": 24, "units": "m s-1", "value": 1.251},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-M", "metric": "RMSE", "variable": "t2m", "level_hpa": null, "lead_hours": 24, "units": "K", "value": 0.539},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-M", "metric": "RMSE", "variable": "u10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.783},
+    {"source_id": "arches_table1_2020", "model": "ArchesWeather-M", "metric": "RMSE", "variable": "v10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": 0.819},
+    {"source_id": "hydro_wet90_2020", "model": "GraphCast", "metric": "ROCSS", "variable": "tp24h_wet90", "level_hpa": null, "lead_hours": 120, "units": "1", "value": 0.46},
+    {"source_id": "hydro_wet90_2020", "model": "GraphCast operational", "metric": "ROCSS", "variable": "tp24h_wet90", "level_hpa": null, "lead_hours": 120, "units": "1", "value": 0.5},
+    {"source_id": "hydro_wet90_2020", "model": "IFS HRES", "metric": "ROCSS", "variable": "tp24h_wet90", "level_hpa": null, "lead_hours": 120, "units": "1", "value": 0.43}
+  ],
+  "missing_records": [
+    {"source_id": "arches_table1_2020", "model": "NeuralGCM", "metric": "RMSE", "variable": "t2m", "level_hpa": null, "lead_hours": 24, "units": "K", "value": null},
+    {"source_id": "arches_table1_2020", "model": "NeuralGCM", "metric": "RMSE", "variable": "u10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": null},
+    {"source_id": "arches_table1_2020", "model": "NeuralGCM", "metric": "RMSE", "variable": "v10", "level_hpa": null, "lead_hours": 24, "units": "m s-1", "value": null},
+    {"source_id": "arches_table1_2020", "model": "FuXi", "metric": "RMSE", "variable": "specific_humidity", "level_hpa": 700, "lead_hours": 24, "units": "g kg-1", "value": null}
+  ]
+}
