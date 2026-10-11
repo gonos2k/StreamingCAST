@@ -9,6 +9,7 @@ import numpy as np
 import torch
 from .physics import step_tensor, thermal_step, rollout, GAMMA, RADIATIVE_RATE
 from .local import atomic_npz
+from .guards import VerificationError, require, finite_gradients, atomic_json, check_boundary
 
 
 def reference_step(x,p,t,lon,lat,evap):
@@ -66,9 +67,9 @@ def derivative_evidence():
     result={'weighted_adjoint_relative_error':float(abs(lhs-rhs)/max(abs(lhs),abs(rhs),1e-15)),
             'jvp_central_difference_relative_error':float(torch.linalg.vector_norm(jv-fd)/torch.linalg.vector_norm(jv)),
             'taylor_steps':hs,'taylor_remainders':remainders,'taylor_orders':orders,'gradcheck':gc}
-    assert result['weighted_adjoint_relative_error']<1e-10
-    assert result['jvp_central_difference_relative_error']<2e-7
-    assert min(orders)>1.9 and max(orders)<2.1 and gc
+    require(result['weighted_adjoint_relative_error'] < 1e-10, 'Weighted adjoint mismatch')
+    require(result['jvp_central_difference_relative_error'] < 2e-7, 'JVP mismatch')
+    require(gc and min(orders) > 1.9 and max(orders) < 2.1, 'Taylor/gradcheck failed')
     return result
 
 
@@ -95,7 +96,7 @@ def tide_evidence():
         phase=np.angle(np.exp(1j*(np.arctan2(b,a)-np.arctan2(v,u))))
         modes[str(period)]={'max_amplitude_ratio_error':float(np.max(abs(np.hypot(a,b)/np.hypot(u,v)-1))),
                             'max_peak_time_error_minutes':float(np.max(abs(phase))*period*60/(2*np.pi))}
-    err=float((pred-truth).abs().max());assert err<1e-11
+    err=float((pred-truth).abs().max());require(err < 1e-11, 'Tidal response failed')
     # A daily-endpoint score can miss a full hourly error.
     e=np.sin(2*np.pi*np.arange(1,241)/24)+.5*np.sin(2*np.pi*np.arange(1,241)/12)
     return {'max_absolute_error_240h':err,'modes':modes,
@@ -118,8 +119,11 @@ def learning_evidence(outdir):
                          tolerance_grad=1e-12,tolerance_change=1e-15,line_search_fn='strong_wolfe')
         calls=[0]
         def closure():
-            opt.zero_grad();v=loss();v.backward();calls[0]+=1;return v
+            opt.zero_grad();v=loss()
+            require(torch.isfinite(v), 'Nonfinite training loss')
+            v.backward();finite_gradients((p,));calls[0]+=1;return v
         opt.step(closure)
+        check_boundary(x, p, t, lon, lat, ev)
         with torch.no_grad():
             states,pr=rollout(xn,p,tn,ln,an,en,240)
             # Held-out reference uses independently coded, adaptive SciPy solves each hour.
@@ -148,16 +152,16 @@ def learning_evidence(outdir):
               'test_accumulated_rain_rmse_mm':float(((pr.sum(0)-prref.sum(0))**2).mean().sqrt()),
               'max_column_water_residual_mm':float(water),'max_step_heat_residual_K':float(torch.stack(heat).max()),
               'restart_bitwise':restart}
-        assert item['final_loss']<first*1e-5
-        assert max(item['test_state_rmse_240h'])<1e-3 and item['test_accumulated_rain_rmse_mm']<1e-3
-        assert water<1e-10 and restart
+        require(item['final_loss'] < first*1e-5, 'Learning loss did not meet threshold')
+        require(max(item['test_state_rmse_240h']) < 1e-3 and item['test_accumulated_rain_rmse_mm'] < 1e-3, 'Held-out forecast threshold failed')
+        require(water < 1e-10 and restart, 'Budget/restart failed')
         checks.append(item)
     return {'parameters':3,'train_pairs':96,'test_cases':12,'horizon_hours':240,
             'truth_parameters':truthp.tolist(),'models':checks,
             'scope':'manufactured split column; same equations, independent ODE integration; not weather skill'}
 
 
-def verify(out):
+def _verify(out):
     torch.set_num_threads(1);start=time.perf_counter();out=Path(out);out.parent.mkdir(parents=True,exist_ok=True)
     result={'scope':'P0 manufactured differentiability/learning evidence, not operational weather',
             'environment':{'python':platform.python_version(),'torch':torch.__version__,
@@ -166,4 +170,19 @@ def verify(out):
             'learning':learning_evidence(out.parent),'seconds':time.perf_counter()-start,
             'real_data_processed':False,'LAYA_executed':False,'B200_executed':False,
             'previous_D83_240h_failure_resolved':False}
-    out.write_text(json.dumps(result,indent=2,allow_nan=False)+'\n');return result
+    result['status'] = 'PASS'
+    atomic_json(out, result)
+    return result
+
+
+
+def verify(out):
+    """Write explicit FAIL and exit nonzero through the CLI, including under -O."""
+    try:
+        return _verify(out)
+    except Exception as error:
+        atomic_json(out, {'status': 'FAIL', 'error_type': type(error).__name__,
+                          'message': str(error), 'weather_skill_verified': False})
+        if isinstance(error, VerificationError):
+            raise
+        raise VerificationError('Verification did not complete') from error
