@@ -1,0 +1,76 @@
+{
+  "schema": "streamingcast-era5-benchmark-revision-execution-v1",
+  "date": "2026-10-11",
+  "remote_base": "6d9866a812172e1c36703731085c622dd1beef35",
+  "new_tests": {
+    "command": "python -m pytest tests/test_benchmark_contract.py -q",
+    "passed": 40,
+    "scope": "Synthetic metric/contracts, table validation, storage/calendar and sampling tests"
+  },
+  "local_regression": {
+    "command": "PYTHONPATH=src python -m pytest -q",
+    "passed": 147,
+    "warnings": 18,
+    "elapsed_seconds": 15.42,
+    "composition": "107 tests from verified 9200b321 implementation snapshot plus 40 new tests; not a complete checkout of current main inventory additions",
+    "main_inventory_eight_tests_reexecuted_here": false
+  },
+  "benchmarks": {
+    "primary_publications": 2,
+    "reported_rmse": 60,
+    "reported_rocss": 3,
+    "raw_forecasts_recomputed": false,
+    "raw_metric_files_decoded": false
+  },
+  "local_raw_inventory_reinspected": false,
+  "real_weather_arrays_read": false,
+  "weather_skill_approved": false,
+  "hourly_D83_inputs_available": false,
+  "source_files": {
+    "src/streamingcast/benchmark_contract.py": {
+      "bytes": 9843,
+      "sha256": "d1a00cc2750f25561fb5216b4bf98eb0380b60b30d1e58fcd2da474003536c38",
+      "git_blob_sha1": "63f3cfe17ebf9487afa1d5d5df0ad168a2f9dcca"
+    },
+    "scripts/check_benchmarks.py": {
+      "bytes": 2522,
+      "sha256": "fa88da5750bd2032e69480c87e161abc0c037dcc8c8828acc11605f7d30c420e",
+      "git_blob_sha1": "bdf836615a081c78d62cc449b28fd7c5093e5a53"
+    },
+    "tests/test_benchmark_contract.py": {
+      "bytes": 6386,
+      "sha256": "c80f2ba921d21f6c9a05f0944cf579fdb2a276fcf9418d849de17cac36701a41",
+      "git_blob_sha1": "e11a39de7597c2db91118cf2f4d4f5e69645b6c4"
+    },
+    "benchmarks/reference_scores.json": {
+      "bytes": 16569,
+      "sha256": "a966299f955bf2427c0d093bdd733485c221a869fadcc77dcf082bfc9c4ad739",
+      "git_blob_sha1": "cf906856359b569c9b3ab726f1b1b857979f1d23"
+    },
+    "benchmarks/development_targets.json": {
+      "bytes": 6705,
+      "sha256": "bb25b67ba7478ac10e39e331a0d3c28d43437343258932d5c6fa1ba3531f585c",
+      "git_blob_sha1": "61b9d005c77e48d2452ec02140b5cecd813e3078"
+    },
+    "docs/ERA5_ALIGNED_PLAN.md": {
+      "bytes": 10726,
+      "sha256": "72a877d5a9d144500c6c5b5b66e7fb859bb65f9ac81b640972e9eb4296b13b1e",
+      "git_blob_sha1": "5f639d9f62c7d5ee3b184836cafaebe7f6fdae9a"
+    },
+    "docs/BENCHMARK_PROTOCOL.md": {
+      "bytes": 11315,
+      "sha256": "c3aad6c830613a67802173bc860580504ed8970728d9e0a6f1c40d3c909f974c",
+      "git_blob_sha1": "3c7816e54735a8e3040a42c76ffdfde5d0840540"
+    },
+    "docs/PROJECT_STATUS.md": {
+      "bytes": 3605,
+      "sha256": "e359601bb788301ed397a1833ccf741a5de72dac3e568548d92ac397cacaacf8",
+      "git_blob_sha1": "104a398a372f78c19b3399c69faf9d40d3d3f701"
+    },
+    "evidence/benchmarks/plan_check.json": {
+      "bytes": 2315,
+      "sha256": "4e3cfb164d01304c236a568860a0c63b7d7adcc6c180bc8b4a8addaa26c3b82d",
+      "git_blob_sha1": "a6223a4caeae1f17835462c5077460bc53548276"
+    }
+  }
+}
