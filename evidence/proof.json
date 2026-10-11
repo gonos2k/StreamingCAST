@@ -1,0 +1,134 @@
+{
+  "scope": "P0 manufactured differentiability/learning evidence, not operational weather",
+  "environment": {
+    "python": "3.13.5",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.3.5",
+    "device": "cpu",
+    "dtype": "float64"
+  },
+  "derivatives": {
+    "weighted_adjoint_relative_error": 0.0,
+    "jvp_central_difference_relative_error": 3.812036335645258e-10,
+    "taylor_steps": [
+      0.04,
+      0.02,
+      0.01,
+      0.005,
+      0.0025
+    ],
+    "taylor_remainders": [
+      2.7035779892598108e-06,
+      6.809484528466701e-07,
+      1.7086930831342376e-07,
+      4.279637946795641e-08,
+      1.0708978440098751e-08
+    ],
+    "taylor_orders": [
+      1.989252477153739,
+      1.9946523095143964,
+      1.9973326259019413,
+      1.9986678873226855
+    ],
+    "gradcheck": true
+  },
+  "tides": {
+    "max_absolute_error_240h": 2.1344037648418634e-14,
+    "modes": {
+      "24": {
+        "max_amplitude_ratio_error": 7.771561172376096e-16,
+        "max_peak_time_error_minutes": 1.0686663729717417e-12
+      },
+      "12": {
+        "max_amplitude_ratio_error": 1.2212453270876722e-15,
+        "max_peak_time_error_minutes": 1.119555247875158e-12
+      }
+    },
+    "endpoint_counterexample": {
+      "hourly_rmse": 0.7905694150420949,
+      "daily_endpoint_rmse": 7.203148406661466e-15
+    }
+  },
+  "learning": {
+    "parameters": 3,
+    "train_pairs": 96,
+    "test_cases": 12,
+    "horizon_hours": 240,
+    "truth_parameters": [
+      -0.4,
+      0.25,
+      0.12
+    ],
+    "models": [
+      {
+        "seed": 0,
+        "parameters": [
+          -0.3999999998842697,
+          0.24999993356213202,
+          0.11999999895449091
+        ],
+        "initial_loss": 0.15708055438012744,
+        "final_loss": 3.5594895719721483e-17,
+        "optimizer_evaluations": 18,
+        "test_state_rmse_240h": [
+          1.5822960149992307e-07,
+          1.942889366217437e-08,
+          6.844180510155978e-11,
+          4.964083168919869e-11
+        ],
+        "test_accumulated_rain_rmse_mm": 1.9428891354433757e-08,
+        "max_column_water_residual_mm": 1.1013412404281553e-13,
+        "max_step_heat_residual_K": 7.105427357601002e-15,
+        "restart_bitwise": true
+      },
+      {
+        "seed": 1,
+        "parameters": [
+          -0.400000005519154,
+          0.24999983412621668,
+          0.12000013555334733
+        ],
+        "initial_loss": 0.08872311557517085,
+        "final_loss": 3.26022279059032e-16,
+        "optimizer_evaluations": 16,
+        "test_state_rmse_240h": [
+          3.8791008007934783e-07,
+          4.776592408125742e-08,
+          6.844180510155978e-11,
+          4.964083168919869e-11
+        ],
+        "test_accumulated_rain_rmse_mm": 4.7765925565519825e-08,
+        "max_column_water_residual_mm": 1.0480505352461478e-13,
+        "max_step_heat_residual_K": 7.105427357601002e-15,
+        "restart_bitwise": true
+      },
+      {
+        "seed": 2,
+        "parameters": [
+          -0.4000000091372509,
+          0.24999990380060988,
+          0.12000014385864674
+        ],
+        "initial_loss": 0.07250425812133177,
+        "final_loss": 2.2120448982907204e-16,
+        "optimizer_evaluations": 15,
+        "test_state_rmse_240h": [
+          2.5766278711875025e-07,
+          2.9472564882409234e-08,
+          6.844180510155978e-11,
+          4.964083168919869e-11
+        ],
+        "test_accumulated_rain_rmse_mm": 2.9472567452441014e-08,
+        "max_column_water_residual_mm": 1.0480505352461478e-13,
+        "max_step_heat_residual_K": 7.105427357601002e-15,
+        "restart_bitwise": true
+      }
+    ],
+    "scope": "manufactured split column; same equations, independent ODE integration; not weather skill"
+  },
+  "seconds": 1.9186745000000087,
+  "real_data_processed": false,
+  "LAYA_executed": false,
+  "B200_executed": false,
+  "previous_D83_240h_failure_resolved": false
+}
