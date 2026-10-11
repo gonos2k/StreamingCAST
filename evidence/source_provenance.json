@@ -1,0 +1,19 @@
+{
+  "archive": "loopcast_stepwise_v0_1_1.zip",
+  "sha256": "0f0693959536e3526939b0c215e70ae5fb64814fad82107f1e5e999e16deeaf0",
+  "migration": "selected contracts only; not a migration or approval of the D83 forecast model",
+  "files": [
+    {
+      "source": "loopcast_stepwise_v0_1_1/src/loopcast/time_contract.py",
+      "destination": "src/streamingcast/time_contract.py",
+      "sha256": "2accfcc3ab7d7961c44b01840128011a4bc719e2e2b4d8bda36ff8284a8ec6ed",
+      "modification": "byte-for-byte copy"
+    },
+    {
+      "source": "loopcast_stepwise_v0_1_1/src/loopcast/products.py",
+      "destination": "src/streamingcast/products.py",
+      "sha256": "370971cb9237fca102e42154a0992a6d6e2d5b3dc1825369d5ff9173ae63e1a4",
+      "modification": "byte-for-byte copy"
+    }
+  ]
+}
