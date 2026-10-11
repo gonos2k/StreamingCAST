@@ -71,3 +71,67 @@ def rollout(state,parameters,hour,longitude,latitude,evaporation,hours):
         state,p=step_tensor(state,parameters,hour+k,longitude,latitude,evaporation)
         states.append(state);rain.append(p)
     return torch.stack(states),torch.stack(rain)
+
+
+
+def check_substeps(substeps):
+    if type(substeps) is not int or substeps not in (1, 2, 4, 8, 16):
+        raise ValueError("substeps must be one of 1,2,4,8,16")
+
+
+def step_interval(state, parameters, hour, longitude, latitude, evaporation, dt):
+    """Frozen-hazard split over dt hours, E is g/kg/hour (NOT interval total).
+    First-order approximation to simultaneous moist/thermal coupling as dt -> 0.
+    dt=1 dispatches the original kernel verbatim; no silent model replacement.
+    """
+    if type(dt) not in (int, float) or not math.isfinite(dt) or not 0 < dt <= 1:
+        raise ValueError("dt must be finite and in (0,1]")
+    if dt == 1:
+        return step_tensor(state, parameters, hour, longitude, latitude, evaporation)
+    theta, q, u, v = state.unbind(-1)
+    d = math.exp(-RADIATIVE_RATE * dt)
+    ta = d * theta
+    for j in (1, 2):
+        w = 2 * math.pi * j / 24
+        phase = w * torch.remainder(hour, 24) + j * longitude
+        a, b = math.cos(w * dt) - d, math.sin(w * dt)
+        re = (a * RADIATIVE_RATE + b * w) / (RADIATIVE_RATE**2 + w*w)
+        im = (b * RADIATIVE_RATE - a * w) / (RADIATIVE_RATE**2 + w*w)
+        ta = ta + parameters[j] * (re * torch.cos(phase) - im * torch.sin(phase))
+    qa = q + dt * evaporation
+    beta = 0.02 + 0.28 * torch.sigmoid(parameters[0])
+    hazard = beta * torch.sigmoid((qa - 8 * torch.exp(0.06 * ta)) / 1.5)
+    rain = -qa * torch.expm1(-dt * hazard)
+    angle = 2 * 7.292115e-5 * torch.sin(latitude) * 3600 * dt
+    c, s = torch.cos(angle), torch.sin(angle)
+    return torch.stack((ta + GAMMA*rain, qa-rain, c*u+s*v, -s*u+c*v), -1), rain
+
+
+def step_substeps(state, parameters, hour, longitude, latitude, evaporation, *, substeps=1):
+    check_substeps(substeps)
+    if substeps == 1:
+        return step_tensor(state, parameters, hour, longitude, latitude, evaporation)
+    rain = torch.zeros_like(state[..., 1])
+    dt = 1.0 / substeps
+    for j in range(substeps):
+        state, part = step_interval(state, parameters, hour+j*dt,
+                                    longitude, latitude, evaporation, dt)
+        rain = rain + part
+    return state, rain
+
+
+def rollout_substeps(state, parameters, hour, longitude, latitude, evaporation,
+                     hours, *, substeps=1):
+    """Pure differentiable hourly output; internal dt and rainfall are explicit."""
+    if type(hours) is not int or not 1 <= hours <= 240:
+        raise ValueError("hours must be 1..240")
+    check_substeps(substeps)
+    if substeps == 1:
+        return rollout(state, parameters, hour, longitude, latitude, evaporation, hours)
+    states, rain = [state], []
+    for k in range(hours):
+        state, part = step_substeps(state, parameters, hour+k, longitude,
+                                   latitude, evaporation, substeps=substeps)
+        states.append(state)
+        rain.append(part)
+    return torch.stack(states), torch.stack(rain)
