@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "scope": "manufactured code expansion, not actual NWP",
+  "environment": {
+    "python": "3.13.5",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "device": "cpu",
+    "dtype": "float64"
+  },
+  "native_observation_chain": {
+    "scope": "SI temperature/q units -> four-variable native split -> SI state + cumulative mm -> prescribed linear point observation",
+    "hours": 6,
+    "substeps": 4,
+    "jvp_fd_scaled_relative": 5.370309463097203e-10,
+    "weighted_adjoint_relative": 7.096051155212158e-16,
+    "taylor_h": [
+      0.08,
+      0.04,
+      0.02,
+      0.01,
+      0.005
+    ],
+    "taylor_remainders": [
+      2.7653588390881903e-05,
+      6.909084468501893e-06,
+      1.726730547415168e-06,
+      4.316149657577432e-07,
+      1.0789527193401111e-07
+    ],
+    "taylor_orders": [
+      2.00090024485964,
+      2.000451578964009,
+      2.000226176360471,
+      2.0001132434601088
+    ],
+    "forecast_output_shape": [
+      3,
+      5
+    ],
+    "actual_NWP_or_real_geometry": false
+  },
+  "temporal_refinement": {
+    "reference": "simultaneous coupled ODE extension, NOT original split truth",
+    "scope": "one manufactured initial state, fixed parameters and one parameter direction; not a global convergence theorem",
+    "native_l2_warning": "mixed units; used only for this fixed-coordinate convergence ratio",
+    "reference_tolerance_change": 2.525979425627156e-12,
+    "reference_fd_halving_change": 1.1973989050740517e-09,
+    "rows": [
+      {
+        "substeps": 1,
+        "dt_hours": 1.0,
+        "theta_error_K": 0.16683919374989298,
+        "q_error_gkg": -0.07492303622016117,
+        "native_coordinate_l2_error": 0.1828900706095383,
+        "parameter_sensitivity_relative_error": 0.03542169414554,
+        "cpu_24h_median_seconds": 0.0026577280000310566,
+        "observed_order": 0.9913672551945488
+      },
+      {
+        "substeps": 2,
+        "dt_hours": 0.5,
+        "theta_error_K": 0.08394923274141242,
+        "q_error_gkg": -0.03762175964706138,
+        "native_coordinate_l2_error": 0.09199386108221073,
+        "parameter_sensitivity_relative_error": 0.020852199452330154,
+        "cpu_24h_median_seconds": 0.005174240999963331,
+        "observed_order": 0.9959502710920376
+      },
+      {
+        "substeps": 4,
+        "dt_hours": 0.25,
+        "theta_error_K": 0.04209068646037295,
+        "q_error_gkg": -0.01886804234070638,
+        "native_coordinate_l2_error": 0.04612622798881469,
+        "parameter_sensitivity_relative_error": 0.011158290656757275,
+        "cpu_24h_median_seconds": 0.014023640999994313,
+        "observed_order": 0.9980373620708257
+      },
+      {
+        "substeps": 8,
+        "dt_hours": 0.125,
+        "theta_error_K": 0.021072909675698526,
+        "q_error_gkg": -0.009449279624469398,
+        "native_coordinate_l2_error": 0.023094510335176215,
+        "parameter_sensitivity_relative_error": 0.00575972726756058,
+        "cpu_24h_median_seconds": 0.03956922099996518,
+        "observed_order": 0.9990327055089042
+      },
+      {
+        "substeps": 16,
+        "dt_hours": 0.0625,
+        "theta_error_K": 0.010543189361022165,
+        "q_error_gkg": -0.004728549636094925,
+        "native_coordinate_l2_error": 0.011554999937835759,
+        "parameter_sensitivity_relative_error": 0.0029247318257251548,
+        "cpu_24h_median_seconds": 0.04277921800007789
+      }
+    ]
+  },
+  "long_rollout": {
+    "hours": 240,
+    "substeps": 4,
+    "restart_137_103_bitwise": true,
+    "column_water_residual_mm": 3.703704010149522e-13,
+    "dry_tidal_composition": [
+      {
+        "substeps": 1,
+        "max_dry_thermal_difference_K": 0.0
+      },
+      {
+        "substeps": 4,
+        "max_dry_thermal_difference_K": 7.993605777301127e-15
+      },
+      {
+        "substeps": 16,
+        "max_dry_thermal_difference_K": 6.439293542825908e-15
+      }
+    ],
+    "known_unresolved_subsaturated_240h_rain_mm": 2.0293199721799096,
+    "real_weather_skill_verified": false
+  },
+  "real_data_processed": false,
+  "LAYA_executed": false,
+  "B200_executed": false,
+  "previous_D83_failure_resolved": false,
+  "seconds": 25.422028393000062
+}
