@@ -1,0 +1,13 @@
+{
+  "issue": 1,
+  "scope": "P0_local_contracts_and_toy_differentiable_boundary",
+  "contracts": "PASS",
+  "toy_derivatives": "PASS",
+  "manufactured_parameter_fit": "PASS",
+  "real_data": "NOT_RUN",
+  "D83_weather_skill": "NOT_APPROVED",
+  "D83_240h_prior_failure_resolved": false,
+  "B200": "NOT_RUN",
+  "LAYA": "NOT_RUN",
+  "external_NWP": "NOT_CONNECTED"
+}

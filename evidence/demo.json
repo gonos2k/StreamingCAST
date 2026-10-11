@@ -1,0 +1,24 @@
+{
+  "snapshot": "b96e37d6a673961de451d3a6cc6f6a092678eada177751a950e53da5c2bddf3a",
+  "schema": "toy-column-v1",
+  "shape": [
+    8,
+    4
+  ],
+  "selected_events": [
+    "demo-0",
+    "demo-1"
+  ],
+  "status": "INPUT_CONTRACT_PASS",
+  "weather_skill_verified": false,
+  "hours": 240,
+  "output_shape": [
+    241,
+    8,
+    4
+  ],
+  "first_commit": true,
+  "duplicate_commit_added": false,
+  "run_key": "47c9afa350aa9f8846ce914a56e98266686a1dc211e60f1f2566d8a484444196",
+  "not_a_real_data_forecast": true
+}
