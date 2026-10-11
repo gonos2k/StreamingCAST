@@ -48,6 +48,12 @@ class Snapshot:
     records: tuple[Record,...]
 
     def __post_init__(self):
+        if not isinstance(self.records, (list, tuple)):
+            raise ValueError("Snapshot records must be a list or tuple of Record")
+        records = tuple(self.records)
+        if any(not isinstance(record, Record) for record in records):
+            raise ValueError("Snapshot contains a non-Record element")
+        object.__setattr__(self, "records", records)
         t,cut=utc_hour(self.initialization),utc_time(self.issue)
         if cut<t or len(self.records)!=2:
             raise ValueError("Snapshot requires two records and a valid issue time")
