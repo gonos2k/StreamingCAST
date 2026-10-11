@@ -1,0 +1,225 @@
+{
+  "schema": "streamingcast-development-targets-v1",
+  "as_of": "2026-10-11",
+  "source_repo_commit": "6d9866a812172e1c36703731085c622dd1beef35",
+  "inventory_document": "docs/ERA5_READINESS.md",
+  "inventory_reinspected_here": false,
+  "profiles": {
+    "global-g29-p6h-research": {
+      "global": true,
+      "step_hours": 6,
+      "pressure_levels_hpa": [
+        1000,
+        850,
+        700,
+        500,
+        250
+      ],
+      "instantaneous_channels": 29,
+      "interval_rain_channels": 1,
+      "input_times_hours": [
+        -6,
+        0
+      ],
+      "rain_period_hours": 6,
+      "status": "PLAN_ONLY_NO_NEW_LOADER_OR_MODEL",
+      "requirements_before_training": [
+        "decode payload QC",
+        "verify rain interval from provenance",
+        "surface pressure for underground mask",
+        "geometry and static features"
+      ],
+      "does_not_satisfy": [
+        "d83-v1",
+        "adjacent_hourly_states",
+        "hourly_rain_validation",
+        "semidiurnal_phase_validation"
+      ]
+    },
+    "regional-hourly-operator-pilot": {
+      "global": false,
+      "step_hours": 1,
+      "status": "DATA_ADAPTER_QC_ONLY",
+      "requirements": [
+        "hybrid A/B and sp/lnsp",
+        "pressure units/level definition",
+        "hourly timestamp continuity",
+        "surface/model grids alignment"
+      ],
+      "known_missing": "2023-06-02T07:00 model-level GRIB according to inventory; payload not decoded here",
+      "may_use_future_boundary": false
+    },
+    "global-d83-p1h-target": {
+      "global": true,
+      "step_hours": 1,
+      "instantaneous_channels": 83,
+      "interval_rain_channels": 1,
+      "pressure_levels_hpa": [
+        50,
+        100,
+        150,
+        200,
+        250,
+        300,
+        400,
+        500,
+        600,
+        700,
+        850,
+        925,
+        1000
+      ],
+      "status": "BLOCKED_MISSING_GLOBAL_HOURLY_INPUTS",
+      "lat_lon_shape": [
+        721,
+        1440
+      ]
+    }
+  },
+  "historical_benchmark_split": {
+    "train_years": [
+      1979,
+      2017
+    ],
+    "validation_years": [
+      2018,
+      2018
+    ],
+    "calibration_years": [
+      2019,
+      2019
+    ],
+    "historical_test_years": [
+      2020,
+      2020
+    ],
+    "supplementary_test_years": [
+      2021,
+      2022
+    ],
+    "note": "Any pretraining, fine-tuning, climatology or threshold fitting on test dates invalidates independence. Do not hide earlier use of the 2020 regional pilot.",
+    "initialization_hours_utc": [
+      0,
+      12
+    ],
+    "historical_full_test_target_end_inclusive": "2021-01-10T12:00:00Z",
+    "rule": "Every training/validation/calibration input-history and label time must lie in its own split."
+  },
+  "future_test": {
+    "initialization_start_inclusive": "2025-01-01T00:00:00Z",
+    "initialization_stop_exclusive": "2026-01-01T00:00:00Z",
+    "hours_utc": [
+      0,
+      6,
+      12,
+      18
+    ],
+    "target_end_inclusive": "2026-01-10T18:00:00Z",
+    "local_data_available": false
+  },
+  "evaluation": {
+    "development_grid": "native grid reported separately",
+    "public_comparison_grid": "1.5 degree 240x121 with poles",
+    "regridding": "Apply a verified conservative area-overlap operator to forecast AND truth before scoring.",
+    "leads_hours": [
+      6,
+      12,
+      24,
+      48,
+      72,
+      120,
+      168,
+      240
+    ],
+    "historical_score_leads_available": [
+      24,
+      120
+    ],
+    "core_metrics": [
+      "geopotential500 RMSE m2 s-2",
+      "temperature850 RMSE K",
+      "specific_humidity700 RMSE g kg-1",
+      "u850/v850 RMSE m s-1",
+      "t2m RMSE K",
+      "u10/v10 RMSE m s-1",
+      "msl RMSE Pa (local only until reference semantics resolved)"
+    ],
+    "precipitation": [
+      "tp6h/tp24h RMSE and bias",
+      "SEEPS with frozen climatology",
+      "FSS at prespecified km radii",
+      "POD/FAR/CSI",
+      "calibrated exceedance probability",
+      "member-first accumulated CRPS"
+    ],
+    "hourly_mandatory": [
+      "all 1h outputs",
+      "24h/12h amplitude and phase with uncertainty",
+      "1h precipitation timing and sum consistency"
+    ],
+    "native_numerical_mandatory": [
+      "JVP/VJP and Taylor",
+      "continuous/discrete sensitivity convergence",
+      "spectral amplitude AND phase",
+      "water/heat budgets with stated closure",
+      "restart and immutable issuance"
+    ]
+  },
+  "approval": {
+    "published_table_can_approve": false,
+    "aggregate_published_score_has_sampling_uncertainty": false,
+    "local_pair_required": true,
+    "nominal_relative_rmse_noninferiority_margin": 0.02,
+    "alpha": 0.05,
+    "minimum_bootstrap_blocks": 10,
+    "note": "Planning guardrail, not universal forecast certification. Freeze block length before evaluating; 10 blocks is only a refusal floor, not proof of adequate power.",
+    "compute_gate": "Compare at fixed measured accuracy or fixed measured cost; include data I/O, ensemble members and internal loops.",
+    "overall_release": "NOT_RUN"
+  },
+  "reference_roles": [
+    {
+      "model": "GraphCast",
+      "role": "6h deterministic and precipitation reference",
+      "score_status": "24h published table available"
+    },
+    {
+      "model": "Pangu-Weather",
+      "role": "6h common scores; pangu_weather_1.onnx for native 1h state benchmark once 13-level inputs exist",
+      "score_status": "24h published table only; 1h scores NOT_RUN",
+      "url": "https://github.com/198808xc/Pangu-Weather"
+    },
+    {
+      "model": "FuXi",
+      "role": "long-rollout reference; missing Q700 not zero-filled",
+      "score_status": "24h published table available"
+    },
+    {
+      "model": "NeuralGCM",
+      "role": "hybrid differentiable-model scientific comparator",
+      "score_status": "24h upper-air table; missing surface variables; version must be frozen"
+    },
+    {
+      "model": "AIFS Single v2 / ENS v2",
+      "role": "operational comparator with versioned initialization analysis",
+      "score_status": "NO_NUMERIC_SCORES_IMPORTED",
+      "url": "https://www.ecmwf.int/en/forecasts/datasets/aifs-machine-learning-data"
+    },
+    {
+      "model": "FourCastNet 3",
+      "role": "spherical stochastic spectrum/rollout comparator",
+      "score_status": "NO_NUMERIC_SCORES_IMPORTED",
+      "url": "https://arxiv.org/abs/2507.12144"
+    },
+    {
+      "model": "GenCast",
+      "role": "probabilistic 12h comparator, not hourly target substitute",
+      "score_status": "FILE_LOCATOR_ONLY",
+      "url": "https://arxiv.org/abs/2312.15796"
+    },
+    {
+      "model": "Stormer / ArchesWeather",
+      "role": "lower-resolution compute-accuracy design reference",
+      "score_status": "24h published table available"
+    }
+  ]
+}
