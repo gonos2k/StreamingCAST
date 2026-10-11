@@ -1,0 +1,143 @@
+{
+  "schema": "streamingcast-era5-local-observation-v1",
+  "inspected_date": "2026-10-11",
+  "scope": "Local metadata, file inventory, decoded time coordinates and two sample frames; not full payload integrity or forecasting validation.",
+  "global": {
+    "location_relative_to_home": "MyThos/data/era5_raw",
+    "years": [
+      1979,
+      2022
+    ],
+    "stores": 44,
+    "total_file_count": 644952,
+    "total_file_bytes": 5477368824476,
+    "chunk_count": 643500,
+    "chunk_bytes": 5477368242400,
+    "markers_complete": 44,
+    "missing_or_empty_or_unexpected_chunks": 0,
+    "time_start_utc": "1979-01-01T00:00:00Z",
+    "time_end_utc": "2022-12-31T18:00:00Z",
+    "step_hours": 6,
+    "timesteps": 64284,
+    "time_coordinate_check": "All 44 annual decoded coordinate arrays matched their complete six-hour calendars.",
+    "grid_shape_lat_lon": [
+      721,
+      1440
+    ],
+    "latitude_endpoints": [
+      90,
+      -90
+    ],
+    "longitude_endpoints": [
+      0,
+      359.75
+    ],
+    "levels_hpa": [
+      1000,
+      850,
+      700,
+      500,
+      250
+    ],
+    "channels": 30,
+    "metadata_sha256_by_store": {
+      "era5_1979.zarr": "be547ecbb5a31c8f5ca09ac2e3d81d20e2c6db80287032503e9741a749102e26",
+      "era5_1980.zarr": "8034547ff806ce367033293aa84866f0bda00e52c2b9bb6698fda424f5bba5bb",
+      "era5_1981.zarr": "b17805ac879216485325144c8a1a916ebdbcc764daf9bea1ee04eff39ac8ee6e",
+      "era5_1982.zarr": "48de3567096c3a33305bdaf69ca3d3373ca02ab75416b154b85e544a35a866fa",
+      "era5_1983.zarr": "f9fcca7499753796a29a26b99a4b716121d48b90a0747a1db7b37d6d28ed52f8",
+      "era5_1984.zarr": "18234714107e943b8035d58966587bd30f5788c33c21744f417d7b9413be7a59",
+      "era5_1985.zarr": "d3929c919265a3c5357c5db2fce16d3eeca4a312f2ec62b0337e27c9632f7f1f",
+      "era5_1986.zarr": "86a1e0be0f1242c1a501cf920e5acca2f8fd47427dbfc6e0c0086a4c73e93baa",
+      "era5_1987.zarr": "3431a6cfa0148723a71b4cd78504f7c079e6960dce93a24f7d724514f8d2c21f",
+      "era5_1988.zarr": "c9fcc0083010195799855e59241ab56887a84fec9b6dc5250c0c288de86bdaa2",
+      "era5_1989.zarr": "c7d85e6f5f3f49a445dc1c872b2311914ca322d448e060ca4599215fbc170789",
+      "era5_1990.zarr": "a0f1673e3cb098baedef2ee5582e659654dd9973706391d8e3b1e1cdb7e8b86f",
+      "era5_1991.zarr": "9d116da9318b00318e187b6c0070fad76ee527a4e46c350a1d5ca9b72ac97c89",
+      "era5_1992.zarr": "82772cafa55f0d04c08c4d2c2cf9513c07da122f3da9081acc3eccab2606b56d",
+      "era5_1993.zarr": "1fc92e94ee2c12ae86b8b0a5c4877fc702c79843e1623e40857053e8ec408e20",
+      "era5_1994.zarr": "8a796656948ebcd10491e8756e80c6c723ae0e34b67b658fe417912099e44c3c",
+      "era5_1995.zarr": "ed8d6e589592e3a1ca9460508d6c953a9a59b605b91a8f02a79e0fa8213ad8fe",
+      "era5_1996.zarr": "80ad957bb582d76bd6d7d2e74ed0f7632411ed34d7a0cfc24f28c75574fa8f63",
+      "era5_1997.zarr": "c9ba26f111f1b6eb5f4446731ac45afa627be21528f088394475c2e1963ba38c",
+      "era5_1998.zarr": "cbb2ede47bf4d4b1aee94d436f4ea3f958c12bdddca3b28f4486544dfc754972",
+      "era5_1999.zarr": "f20eb6e1f85e54f8c140569f599f6ef4f73b45d2901c2d6b3def5c648387b20b",
+      "era5_2000.zarr": "ad20478496c0cec9f5643e65665e783113f7f3656b725b45e634eca97956c6eb",
+      "era5_2001.zarr": "fb12cf1c17c8e508164bd76cb590e484b3cc6aea179438b8d2239719b2425336",
+      "era5_2002.zarr": "ace271c4097d0d88a75ac13a03bf65f16105b4bd74e988e49a7c0bf656fc49aa",
+      "era5_2003.zarr": "e4ff3d3546aeb537d64aaf0b47517716f9011cb4df3bda66aa299333fe9520d4",
+      "era5_2004.zarr": "2b68c9ddfaf2d3684e479d0cb9714511eff0fb8f204e1c2e46c1a2074a0f6ba6",
+      "era5_2005.zarr": "e164e33b53b36d5452fe0133982fe40df1d91b92a2bc16b010447b6fec912ead",
+      "era5_2006.zarr": "74c65793c861fe91e3788fce6a91ab04e34fde9d29a7d2d11b24fee60a9cb74b",
+      "era5_2007.zarr": "cc5113ff97af95196c771172e74bdd35107d5bfc35bb099425b659a7d3538df4",
+      "era5_2008.zarr": "fb55c18b7fd8a9b1ff28d3c61fd32ef181defbe53703a8f51dc8a3178d15c19a",
+      "era5_2009.zarr": "54681fafec041c73ede51c950e22f6af9ac037d26d28330efc2dd4fab3bddb32",
+      "era5_2010.zarr": "b830605db47458ae7566daf7f6af1ecf2df0be94b53683d82444df6908be9209",
+      "era5_2011.zarr": "29d00253a0f91f290756520c3037e54a5ab47ca30ccf3fa1485fd1f868d1375b",
+      "era5_2012.zarr": "0d53846182ac33c92ce924f54d1a05173e5c90e268b5090269f228bbe918a940",
+      "era5_2013.zarr": "f28266bd05f9d8775c543b036e64dc9111f0eb46ad569b055493a9d115845bfd",
+      "era5_2014.zarr": "fbfb71a05c7dba89c612499ef7fc24510376df23019598a92179b737040e0c13",
+      "era5_2015.zarr": "249c2b776cec837ec713257c66c33968d777d6d394078bbbaa8bd62c8e85bac7",
+      "era5_2016.zarr": "c784ab045ec66b7a61b136016cc632621226a6ec48b229c3e86c0eccb72e4ecb",
+      "era5_2017.zarr": "aa66958b58557f3d2b5a23bef3489822a4e8110419082907f90ea620a729b0da",
+      "era5_2018.zarr": "39c93b2e62898ee9e06ed0a7e063a57a80938ebb56f435fa6e42ab47a53a8632",
+      "era5_2019.zarr": "798e5a538554a1ac3e288264a68582ea29d0d7c1426ec625e601e0bb9f36a044",
+      "era5_2020.zarr": "0feb9113ed470f006797bef97d9b3fa7a42154639a1fa6edeed5067f9a02b831",
+      "era5_2021.zarr": "b503244063271404524ad79241bcf462266f05416aa97b20fc610d640eefcff8",
+      "era5_2022.zarr": "a3afdcc9b625e803ae7f9c922fc3d483ab2364a2663b4f76d4911d09eff70496"
+    },
+    "sample_t2m_first_frames": [
+      {
+        "year": 1979,
+        "all_finite": true,
+        "min_K": 213.43038940429688,
+        "max_K": 310.5110168457031,
+        "mean_K": 276.27996826171875
+      },
+      {
+        "year": 2022,
+        "all_finite": true,
+        "min_K": 218.81358337402344,
+        "max_K": 312.9637756347656,
+        "mean_K": 276.8025817871094
+      }
+    ],
+    "coordinate_sample_reader": "Local MyThos environment: xarray.open_zarr(consolidated=True); time.values for all stores; 2m_temperature.isel(time=0).values for 1979 and 2022."
+  },
+  "regional_archive": {
+    "location_relative_to_home": "ROAD-yh/data/shared/era5",
+    "zip_count": 11,
+    "total_file_bytes": 14038323678,
+    "index_sha256": "bec229fcc92dee872d767997b504c6c10372c1227b64c10bbfed174c13fc198e",
+    "index_days": 520,
+    "outer_zip_days": 520,
+    "coverage_start": "2022-12-01",
+    "coverage_end": "2024-06-30",
+    "missing_calendar_days": 58,
+    "daily_coverage_complete_from": "2023-03-01",
+    "index_reported_missing_file": "ERA5_anal_ml_20230602_0700.grib",
+    "payload_decoded_or_crc_checked": false
+  },
+  "regional_month": {
+    "location_relative_to_home": "fSCM/data/era5-month",
+    "netcdf_files": 3,
+    "total_file_bytes": 21435009,
+    "time_start_utc": "2020-01-01T00:00:00Z",
+    "time_end_utc": "2020-01-31T23:00:00Z",
+    "timesteps": 744,
+    "grid_shape_lat_lon": [
+      5,
+      5
+    ],
+    "model_levels": 83,
+    "d83_channels_verified": false
+  },
+  "not_verified": [
+    "all_array_values",
+    "raw_payload_content_hashes",
+    "rainfall_endpoints",
+    "streaming_availability",
+    "D83_conversion",
+    "forecast_skill"
+  ]
+}

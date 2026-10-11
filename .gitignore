@@ -17,3 +17,10 @@ runs/
 .env.*
 *.pem
 *.key
+.cdsapirc
+*.nc
+*.grib
+*.grb
+*.grib2
+*.zarr/
+*.zip

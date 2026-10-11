@@ -50,6 +50,20 @@ streamingcast inspect --manifest /absolute/local/manifest.json \
 다운로드·ERA5 변환·재격자·정규화·실제 시각 가용성 검증은 로컬 처리기에서 담당한다.
 상세 규격은 [LOCAL_DATA.md](docs/LOCAL_DATA.md)를 따른다.
 
+## 로컬 ERA5 자료 준비
+
+[ERA5 자료 현황과 입력 요건](docs/ERA5_READINESS.md)에 전지구 1979–2022년 Zarr
+44개(5.48 TB), 지역 자료와 누락 현황을 기록했다. 전지구 캐시는 6시간·30채널이므로
+1시간·D83 계약에 필요한 자료를 추가로 준비해야 한다.
+
+```bash
+python scripts/inspect_era5_cache.py --root "$HOME/MyThos/data/era5_raw" \
+  --check-chunks --out runs/era5/cache-inventory.json
+```
+
+이 도구는 로컬 메타데이터와 청크 경로/크기만 점검한다. 원자료 다운로드, 변환,
+실제 예측은 수행하지 않는다.
+
 ## 연결 구조
 
 `로컬 처리기 -> Record/ledger -> 고정 Snapshot -> adapter -> 순수 텐서 step -> 결과검사 -> 실행원장`

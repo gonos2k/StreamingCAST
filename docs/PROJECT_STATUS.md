@@ -23,6 +23,11 @@ The new model is not a replacement for the original D83 model.
 
 ## Next bounded work
 
+Local ERA5 inventory is now recorded in [ERA5_READINESS.md](ERA5_READINESS.md).
+The 1979–2022 global cache exists, but its six-hourly 30-channel schema cannot
+supply adjacent hourly D83 states. Structural inventory is not preprocessing,
+real-data forecast validation, or approval of the outstanding work below.
+
 1. User-side local preprocessing produces canonical records and verified geometry/stats hashes.
 2. An adapter converts that schema into the selected model's native tensors without breaking gradients.
 3. Add a spatial physical model and compare tangent/adjoint/Taylor with independent references.
