@@ -1,0 +1,75 @@
+{
+  "scope": "Reference-table validation, calendar/storage arithmetic and manufactured sampling example",
+  "catalog": {
+    "records": 63,
+    "counts": {
+      "RMSE": 60,
+      "ROCSS": 3
+    },
+    "sources": 2,
+    "forecast_skill_approved": false
+  },
+  "catalog_sha256": "72bdff970919f469696e5a5bdd0a51408dedcc5f4e9a39df7508cf59442a24a8",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5"
+  },
+  "real_weather_arrays_read": false,
+  "forecast_models_executed": false,
+  "forecast_skill_approved": false,
+  "storage": {
+    "G30_025deg_6h_1979_2022": {
+      "timesteps": 64284,
+      "bytes": 8009066419200,
+      "TB_decimal": 8.0090664192,
+      "basis": "Uncompressed arrays, NOT measured disk usage or training cost"
+    },
+    "G30_1deg_6h_1979_2022": {
+      "timesteps": 64284,
+      "bytes": 502649452800,
+      "TB_decimal": 0.5026494528,
+      "basis": "Uncompressed arrays, NOT measured disk usage or training cost"
+    },
+    "sp_025deg_6h_1979_2022": {
+      "timesteps": 64284,
+      "bytes": 266968880640,
+      "TB_decimal": 0.26696888064,
+      "basis": "Uncompressed arrays, NOT measured disk usage or training cost"
+    },
+    "D83_plus_rain_1deg_1h_5years_2018_2022": {
+      "timesteps": 43824,
+      "bytes": 959472138240,
+      "TB_decimal": 0.95947213824,
+      "basis": "Uncompressed arrays, NOT measured disk usage or training cost"
+    },
+    "D83_plus_rain_025deg_1h_1979_2022": {
+      "timesteps": 385704,
+      "bytes": 134552315842560,
+      "TB_decimal": 134.55231584256,
+      "basis": "Uncompressed arrays, NOT measured disk usage or training cost"
+    }
+  },
+  "documented_local_disk_bytes": 5477368824476,
+  "documented_inventory_reinspected_here": false,
+  "sampling_manufactured": {
+    "1": {
+      "samples": 720,
+      "rank": 5,
+      "columns": 5,
+      "scope": "one point and regular UTC sampling; global spatial constraints not evaluated"
+    },
+    "6": {
+      "samples": 120,
+      "rank": 4,
+      "columns": 5,
+      "scope": "one point and regular UTC sampling; global spatial constraints not evaluated"
+    }
+  },
+  "remaining_blocks": [
+    "actual cache payload validation",
+    "per-model local re-evaluation",
+    "1h global inputs",
+    "checkpoint and initialization lineage",
+    "observational precipitation/tidal validation"
+  ]
+}
