@@ -1,0 +1,27 @@
+{
+  "base_commit": "2c21bccb58bc5dc9a967880ebf3494d82d1b44d3",
+  "baseline_files": 25,
+  "baseline_all_hashes_match": true,
+  "baseline_tests": 53,
+  "patched_tests": 107,
+  "new_regression_tests": 54,
+  "fixes": {
+    "optimization_bypass": "blocked with VerificationError and FAIL JSON",
+    "mutable_snapshot": "copied to validated tuple",
+    "invalid_clock_and_extreme_source": "checked boundary rejects; low-level core remains explicit unchecked tensor API",
+    "nan_gradient": "explicit pre-update gate; no claim that arbitrary raw-core inputs become numerically safe",
+    "late_missing_payload": "as-of selected files only; check-catalog remains strict ingest-all",
+    "artifact_overwrite": "content address + no-overwrite install + verify-on-read/register + read-only orphan inventory"
+  },
+  "original_three_parameter_fit_rerun": {
+    "status": "PASS",
+    "maximum_parameter_difference_from_historical_evidence": 2.7755575615628914e-16,
+    "historical_JSON_bitwise_equal": false,
+    "note": "roundoff-scale differences retained; not claiming full historical bitwise equality"
+  },
+  "real_data_processed": false,
+  "B200_executed": false,
+  "LAYA_executed": false,
+  "old_D83_failure_resolved": false,
+  "runtime": "Python 3.13.5, torch 2.10.0+cpu, numpy 2.3.5, scipy 1.17.0"
+}
