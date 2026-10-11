@@ -1,0 +1,26 @@
+{
+  "base_commit": "2c21bccb58bc5dc9a967880ebf3494d82d1b44d3",
+  "scope": "current code/tests and review documentation, excludes historical evidence",
+  "sha256": {
+    "README.md": "99a4d10e048edd7bae5740e0f92960d33da1fa15287710c062ac0a74edaf6a85",
+    "pyproject.toml": "31c84b1202ea2389ee7249327faf728a0ae30562be7763990303bd0eb1ece01c",
+    "requirements-tested.txt": "c24dad05af079e2d986ff42518e5befa108688695d4f993e78d77712ded2c5e8",
+    "src/streamingcast/__init__.py": "90fe39384a455c2ca81424ef044190ba8148d3b9af02aa11b66d110bd6bcd13c",
+    "src/streamingcast/artifacts.py": "818d3bdb4347edee44fd1147a9bba847bca4d24571cb6f0a8c6a90d75cc7f110",
+    "src/streamingcast/cli.py": "76ade1153002d693fa1a3e4ef429d3530b21d107048df2c9c5d3d9865ef787ba",
+    "src/streamingcast/coupling.py": "292877f19812e6c5317f368456f2420610ab639f522ef83d44a1ab6b516f5499",
+    "src/streamingcast/guards.py": "77b416129e945e76c7922810e7e147395b4e0ecf2ec8ee2dcfae3b5c6a583a33",
+    "src/streamingcast/local.py": "c69c8052b9cc35fae49bec2d23f59bad36b7079eaaab0591d0f5c9bdf2aace9a",
+    "src/streamingcast/physics.py": "53732a6ad1873274447c02cb832d0c2fc344f284ee51789e78d627afa39d2791",
+    "src/streamingcast/products.py": "370971cb9237fca102e42154a0992a6d6e2d5b3dc1825369d5ff9173ae63e1a4",
+    "src/streamingcast/schema.py": "22c26927238f477a1b196e31d239880fdfcd31872cffd5e095e527dce2452a03",
+    "src/streamingcast/stream.py": "4d903d9bdec7dc1c5e7a8f3a5ee267e26618e8139516dc3f9e578297b1865a27",
+    "src/streamingcast/time_contract.py": "2accfcc3ab7d7961c44b01840128011a4bc719e2e2b4d8bda36ff8284a8ec6ed",
+    "src/streamingcast/verification.py": "286e564b7295b4bdc02030fa7376403c7e1c875d7a6abc74e324accdc2ca25ee",
+    "tests/test_contracts.py": "70dd98ea0584173e886bf8f2766cabd31a9e6cb6a8c57213a8a2cd11a8c56373",
+    "tests/test_differentiability.py": "6a44aef32aebd803b8bdf30311617a103e2148452dfe7b1bacc781ba882cfc72",
+    "tests/test_review_fixes.py": "88b67eb164d073f423208fe18417af43cde6cae9e735034a9a0cdac721b965bc",
+    "scripts/prove_expansion.py": "bf35ef65d339ce619d2d6dbdc940b172698b175016fcca3c7c115ffe72dd212f",
+    "docs/REVIEW_FIX.md": "9675736a0a20cde8b0895346fb092376180d28c238b2686c90eae4318cfbecd9"
+  }
+}
