@@ -1,0 +1,83 @@
+{
+  "schema": "streamingcast-knowledge-sources-v1",
+  "built_at_utc": "2026-10-11T15:01:45.713805+00:00",
+  "graphify_version": "0.9.53",
+  "scope": {
+    "code_roots": [
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "documents": [
+      "README.md",
+      "AGENTS.md",
+      "docs/*.md",
+      "evidence/pytest.txt",
+      "evidence/review_fix/pytest.txt",
+      "requirements-tested.txt"
+    ],
+    "excluded": [
+      "wiki",
+      "graphify-out",
+      "runs",
+      "local_data",
+      "data",
+      "raw",
+      "evidence/**/*.json",
+      "credentials",
+      "raw arrays",
+      "pyproject.toml"
+    ]
+  },
+  "extraction": {
+    "ast_code_files": 18,
+    "semantic_document_files": 12,
+    "semantic_agent_model": "GPT-6-luna",
+    "semantic_reasoning_effort": "high",
+    "token_usage": null,
+    "token_usage_reason": "Host collaboration tool exposes no measured usage.",
+    "explicit_doc_code_bridges": 12
+  },
+  "graph": {
+    "nodes": 256,
+    "edges": 632,
+    "communities": 10
+  },
+  "sources": {
+    "scripts/inspect_era5_cache.py": "be9c71c8ce1fd09e32d12d5df4e765581d081113767d09d35030c7c8d6255858",
+    "scripts/prove_expansion.py": "bf35ef65d339ce619d2d6dbdc940b172698b175016fcca3c7c115ffe72dd212f",
+    "src/streamingcast/__init__.py": "90fe39384a455c2ca81424ef044190ba8148d3b9af02aa11b66d110bd6bcd13c",
+    "src/streamingcast/artifacts.py": "818d3bdb4347edee44fd1147a9bba847bca4d24571cb6f0a8c6a90d75cc7f110",
+    "src/streamingcast/cli.py": "76ade1153002d693fa1a3e4ef429d3530b21d107048df2c9c5d3d9865ef787ba",
+    "src/streamingcast/coupling.py": "292877f19812e6c5317f368456f2420610ab639f522ef83d44a1ab6b516f5499",
+    "src/streamingcast/guards.py": "77b416129e945e76c7922810e7e147395b4e0ecf2ec8ee2dcfae3b5c6a583a33",
+    "src/streamingcast/local.py": "c69c8052b9cc35fae49bec2d23f59bad36b7079eaaab0591d0f5c9bdf2aace9a",
+    "src/streamingcast/physics.py": "53732a6ad1873274447c02cb832d0c2fc344f284ee51789e78d627afa39d2791",
+    "src/streamingcast/products.py": "370971cb9237fca102e42154a0992a6d6e2d5b3dc1825369d5ff9173ae63e1a4",
+    "src/streamingcast/schema.py": "22c26927238f477a1b196e31d239880fdfcd31872cffd5e095e527dce2452a03",
+    "src/streamingcast/stream.py": "4d903d9bdec7dc1c5e7a8f3a5ee267e26618e8139516dc3f9e578297b1865a27",
+    "src/streamingcast/time_contract.py": "2accfcc3ab7d7961c44b01840128011a4bc719e2e2b4d8bda36ff8284a8ec6ed",
+    "src/streamingcast/verification.py": "286e564b7295b4bdc02030fa7376403c7e1c875d7a6abc74e324accdc2ca25ee",
+    "tests/test_contracts.py": "70dd98ea0584173e886bf8f2766cabd31a9e6cb6a8c57213a8a2cd11a8c56373",
+    "tests/test_differentiability.py": "6a44aef32aebd803b8bdf30311617a103e2148452dfe7b1bacc781ba882cfc72",
+    "tests/test_era5_cache.py": "400011e580ee9e8387b22245b7ae6cb1dcfb621cfda5f21f78cdea6935ab4f25",
+    "tests/test_review_fixes.py": "88b67eb164d073f423208fe18417af43cde6cae9e735034a9a0cdac721b965bc",
+    "AGENTS.md": "1a463a5ccb84f74b9fb3ccbfe86e8222e44c111687fe19651af7aa92eca6b519",
+    "README.md": "5123a3058a309619274fdcec3481daec0ac60d6239d263cc9ed4ebba76f6bb7b",
+    "docs/DESIGN.md": "f0a88f1b3288285da06333d6abb68146e3b5a598d1c664ee208077740f734cb6",
+    "docs/ERA5_READINESS.md": "93fdc349e4e3decfd2b028b5662a5cfc7b7c8017051d35d791209bbea0fa2fc4",
+    "docs/KNOWLEDGE_WORKFLOW.md": "0637f0ca7dbc299381053392e6e798d08485e6ab858dc798f5ae6175cf62a204",
+    "docs/LOCAL_DATA.md": "34c27f85a78a9a9b8de3da9ab072098cbc4dc74da142ce50107f0bf699a213f3",
+    "docs/PROJECT_STATUS.md": "4259799f2a72b5eacf6f44b318b264fe121cbd4991c17347c207935c7ca6475d",
+    "docs/REVIEW_FIX.md": "9675736a0a20cde8b0895346fb092376180d28c238b2686c90eae4318cfbecd9",
+    "docs/VERIFICATION.md": "523d69decfe635792b45579c24b30bc89404458b08c3da1a60a756822ff14e8d",
+    "evidence/pytest.txt": "14325f8a0adb7ba556755b9bbc508331992d44b1da79f1a1c8d4e21aa4f39710",
+    "evidence/review_fix/pytest.txt": "ad0b02341ea34973bba38f4f86ccaf42cc84d6571b58dca9d61e3767edc6fc4a",
+    "requirements-tested.txt": "c24dad05af079e2d986ff42518e5befa108688695d4f993e78d77712ded2c5e8"
+  },
+  "policy_files": {
+    ".graphifyignore": "15d51d33f3d0ed44e5f102127dadd9ffadfb6afb1fdff951f6d6dc30641d4446",
+    ".gitignore": "7df5d17f9f487f066748ba70c59c7fd59fb56cd5a47ac8ab5da876c0ab42de04"
+  },
+  "working_tree_inputs": true
+}
