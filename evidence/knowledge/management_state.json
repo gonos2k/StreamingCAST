@@ -1,0 +1,39 @@
+{
+  "checked_at_utc": "2026-10-11 15:27:21 UTC",
+  "scope": "Read-only live GitHub verification; no remote merge performed.",
+  "pull_requests": [
+    {
+      "number": 3,
+      "url": "https://github.com/gonos2k/StreamingCAST/pull/3",
+      "state": "closed",
+      "merged": true,
+      "base": "main",
+      "head": "work/era5-data-readiness-20261011",
+      "merge_commit_sha": "6d9866a812172e1c36703731085c622dd1beef35",
+      "head_sha": "720320e74be12dcde02ca3d232cd60c4ec2c9c39",
+      "merged_at": "2026-10-11T14:05:09Z"
+    },
+    {
+      "number": 4,
+      "url": "https://github.com/gonos2k/StreamingCAST/pull/4",
+      "state": "closed",
+      "merged": true,
+      "base": "main",
+      "head": "work/era5-aligned-plan-20261011",
+      "merge_commit_sha": "b34cd3fd49a4eead90b977327672158087b0799e",
+      "head_sha": "009a363584aee7d7d053bbfeb284fc476e049039",
+      "merged_at": "2026-10-11T15:11:49Z"
+    },
+    {
+      "number": 5,
+      "url": "https://github.com/gonos2k/StreamingCAST/pull/5",
+      "state": "closed",
+      "merged": true,
+      "base": "work/era5-data-readiness-20261011",
+      "head": "work/kg-project-management-20261011",
+      "merge_commit_sha": "815751dbbeae6fb69b54f7980ec3c3ab70d6d577",
+      "head_sha": "f7f21acdd83b90f5239f79aab1fe4fb2d0231e6f",
+      "merged_at": "2026-10-11T15:12:10Z"
+    }
+  ]
+}

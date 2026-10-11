@@ -1,0 +1,90 @@
+{
+  "schema": "streamingcast-combined-integration-check-v1",
+  "date": "2026-10-12",
+  "revision": "3735c75feef5312f65c984f2b11ce3b49aac464c",
+  "regression": {
+    "command": "uv run --no-project --with 'numpy>=2,<3' --with 'torch>=2.10,<2.11' --with 'pytest>=8,<10' --with 'scipy>=1.14,<2' python -m pytest -q",
+    "expected_composition": {
+      "existing_verified_tests": 107,
+      "inventory_tests": 8,
+      "benchmark_tests": 40,
+      "total": 155
+    },
+    "passed": 155,
+    "warnings": 18,
+    "warning_type": "DeprecationWarning: torch.jit.script is deprecated",
+    "subtests_passed": 2,
+    "elapsed_seconds": 28.1,
+    "status": "PASS"
+  },
+  "environment": {
+    "python": "3.13.13",
+    "numpy": "2.5.4",
+    "torch": "2.10.0",
+    "pytest": "9.1.1",
+    "scipy": "1.18.1",
+    "provisioning": "uv --no-project; no project venv or lockfile edits"
+  },
+  "benchmark_check": {
+    "command": "PYTHONPATH=src uv run --no-project --with 'numpy>=2,<3' --with 'torch>=2.10,<2.11' --with 'pytest>=8,<10' --with 'scipy>=1.14,<2' python scripts/check_benchmarks.py --out /tmp/streamingcast-integration-benchmark-check.json",
+    "initial_command_without_pythonpath": "Failed to import streamingcast because --no-project does not add src to sys.path; rerun with PYTHONPATH=src passed.",
+    "status": "PASS",
+    "plan_check_non_environment_fields_match": true,
+    "plan_check_environment_differs": true,
+    "catalog": {
+      "records": 63,
+      "counts": {
+        "RMSE": 60,
+        "ROCSS": 3
+      },
+      "sources": 2,
+      "forecast_skill_approved": false
+    },
+    "catalog_sha256": "72bdff970919f469696e5a5bdd0a51408dedcc5f4e9a39df7508cf59442a24a8",
+    "storage_timesteps": {
+      "G30_025deg_6h_1979_2022": 64284,
+      "G30_1deg_6h_1979_2022": 64284,
+      "sp_025deg_6h_1979_2022": 64284,
+      "D83_plus_rain_1deg_1h_5years_2018_2022": 43824,
+      "D83_plus_rain_025deg_1h_1979_2022": 385704
+    },
+    "sampling_manufactured": {
+      "1": {
+        "samples": 720,
+        "rank": 5,
+        "columns": 5,
+        "scope": "one point and regular UTC sampling; global spatial constraints not evaluated"
+      },
+      "6": {
+        "samples": 120,
+        "rank": 4,
+        "columns": 5,
+        "scope": "one point and regular UTC sampling; global spatial constraints not evaluated"
+      }
+    },
+    "real_weather_arrays_read": false,
+    "forecast_models_executed": false,
+    "documented_inventory_reinspected_here": false,
+    "remaining_blocks": [
+      "actual cache payload validation",
+      "per-model local re-evaluation",
+      "1h global inputs",
+      "checkpoint and initialization lineage",
+      "observational precipitation/tidal validation"
+    ]
+  },
+  "scope_limits": {
+    "raw_era5_payloads_read": false,
+    "forecast_skill_approved": false
+  },
+  "revision_context": {
+    "kind": "local base merge checkout; not a published source commit",
+    "source_parents": [
+      "b34cd3fd49a4eead90b977327672158087b0799e",
+      "815751dbbeae6fb69b54f7980ec3c3ab70d6d577"
+    ],
+    "base_git_tree": "4ae0290a701f2b2b6f8182f582031a6cff8c5b22",
+    "working_source_changes": false,
+    "reproduction": "For the post-review run, use source_sha256 rather than assuming revision alone identifies tested working files."
+  }
+}

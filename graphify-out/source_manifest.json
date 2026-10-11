@@ -1,0 +1,136 @@
+{
+  "schema": "streamingcast-knowledge-sources-v1",
+  "built_at_utc": "2026-10-11T15:43:00.902443+00:00",
+  "graphify_version": "0.9.53",
+  "provenance": {
+    "branch": "work/kg-benchmark-sync-20261012",
+    "base_main_commit": "b34cd3fd49a4eead90b977327672158087b0799e",
+    "knowledge_management_commit": "f7f21acdd83b90f5239f79aab1fe4fb2d0231e6f",
+    "prior_benchmark_snapshot_commit": "009a363584aee7d7d053bbfeb284fc476e049039",
+    "prior_integration_snapshot_commit": "3735c75feef5312f65c984f2b11ce3b49aac464c",
+    "working_tree_inputs": true,
+    "built_at_commit": null
+  },
+  "scope": {
+    "code_roots": [
+      "src",
+      "scripts",
+      "tests"
+    ],
+    "documents": [
+      "README.md",
+      "AGENTS.md",
+      "docs/*.md",
+      "evidence/pytest.txt",
+      "evidence/review_fix/pytest.txt",
+      "requirements-tested.txt"
+    ],
+    "excluded": [
+      "wiki",
+      "graphify-out",
+      "runs",
+      "local_data",
+      "data",
+      "raw",
+      "evidence/**/*.json",
+      "credentials",
+      "raw arrays",
+      "pyproject.toml",
+      "benchmarks/*.json (auxiliary citation hashes only)"
+    ],
+    "auxiliary_citations": [
+      "benchmarks/reference_scores.json",
+      "benchmarks/development_targets.json",
+      "evidence/benchmarks/plan_check.json",
+      "evidence/benchmarks/execution.json",
+      "evidence/knowledge/management_state.json",
+      "evidence/knowledge/integration_check.json",
+      "evidence/knowledge/rocss_threshold_provenance.json"
+    ],
+    "note": "Auxiliary benchmark/evidence JSON is hashed because the cited contracts rely on it; evidence JSON was not extracted as graph input."
+  },
+  "extraction": {
+    "ast_code_files": 21,
+    "semantic_document_files": 15,
+    "semantic_agent_model": "GPT-6-luna",
+    "semantic_reasoning_effort": "high",
+    "token_usage": null,
+    "token_usage_reason": "Host-session extraction usage is unavailable; no measured value is fabricated.",
+    "old_explicit_doc_code_bridges_retained": 12,
+    "new_exact_doc_code_bridges": 8,
+    "explicit_doc_code_bridges": 20,
+    "cached_semantic_recovered": {
+      "nodes": 44,
+      "edges": 67,
+      "hyperedges": 3
+    },
+    "new_semantic": {
+      "nodes": 17,
+      "edges": 25
+    }
+  },
+  "graph": {
+    "nodes": 323,
+    "edges": 790,
+    "communities": 11
+  },
+  "sources": {
+    "scripts/check_benchmarks.py": "fa88da5750bd2032e69480c87e161abc0c037dcc8c8828acc11605f7d30c420e",
+    "scripts/inspect_era5_cache.py": "be9c71c8ce1fd09e32d12d5df4e765581d081113767d09d35030c7c8d6255858",
+    "scripts/prove_expansion.py": "bf35ef65d339ce619d2d6dbdc940b172698b175016fcca3c7c115ffe72dd212f",
+    "src/streamingcast/__init__.py": "90fe39384a455c2ca81424ef044190ba8148d3b9af02aa11b66d110bd6bcd13c",
+    "src/streamingcast/artifacts.py": "818d3bdb4347edee44fd1147a9bba847bca4d24571cb6f0a8c6a90d75cc7f110",
+    "src/streamingcast/benchmark_contract.py": "6f29faef9c693dc9bc7398f6f3724e43d9694a53a8ada398067ee9ffb638d3d0",
+    "src/streamingcast/cli.py": "76ade1153002d693fa1a3e4ef429d3530b21d107048df2c9c5d3d9865ef787ba",
+    "src/streamingcast/coupling.py": "292877f19812e6c5317f368456f2420610ab639f522ef83d44a1ab6b516f5499",
+    "src/streamingcast/guards.py": "77b416129e945e76c7922810e7e147395b4e0ecf2ec8ee2dcfae3b5c6a583a33",
+    "src/streamingcast/local.py": "c69c8052b9cc35fae49bec2d23f59bad36b7079eaaab0591d0f5c9bdf2aace9a",
+    "src/streamingcast/physics.py": "53732a6ad1873274447c02cb832d0c2fc344f284ee51789e78d627afa39d2791",
+    "src/streamingcast/products.py": "370971cb9237fca102e42154a0992a6d6e2d5b3dc1825369d5ff9173ae63e1a4",
+    "src/streamingcast/schema.py": "22c26927238f477a1b196e31d239880fdfcd31872cffd5e095e527dce2452a03",
+    "src/streamingcast/stream.py": "4d903d9bdec7dc1c5e7a8f3a5ee267e26618e8139516dc3f9e578297b1865a27",
+    "src/streamingcast/time_contract.py": "2accfcc3ab7d7961c44b01840128011a4bc719e2e2b4d8bda36ff8284a8ec6ed",
+    "src/streamingcast/verification.py": "286e564b7295b4bdc02030fa7376403c7e1c875d7a6abc74e324accdc2ca25ee",
+    "tests/test_benchmark_contract.py": "51d9b5eb44f3240b72b9e72563a11c96f4a15795b39d2844b976018acf71b391",
+    "tests/test_contracts.py": "70dd98ea0584173e886bf8f2766cabd31a9e6cb6a8c57213a8a2cd11a8c56373",
+    "tests/test_differentiability.py": "6a44aef32aebd803b8bdf30311617a103e2148452dfe7b1bacc781ba882cfc72",
+    "tests/test_era5_cache.py": "400011e580ee9e8387b22245b7ae6cb1dcfb621cfda5f21f78cdea6935ab4f25",
+    "tests/test_review_fixes.py": "88b67eb164d073f423208fe18417af43cde6cae9e735034a9a0cdac721b965bc",
+    "AGENTS.md": "839f061a799fb0cc5a611dad084aa6a291b701130ac10f7bf07daedcd9752254",
+    "README.md": "5123a3058a309619274fdcec3481daec0ac60d6239d263cc9ed4ebba76f6bb7b",
+    "docs/BENCHMARK_PROTOCOL.md": "9c50ac73b23e4c2b81afd7eb54ba0fa621bd548f78f9d69674676beec6f94b02",
+    "docs/BENCHMARK_REVIEW_FIX.md": "c0462074a0f5915f1af4b625d157ffa6fc5725daf05a7e9362ea0232f40f7154",
+    "docs/DESIGN.md": "f0a88f1b3288285da06333d6abb68146e3b5a598d1c664ee208077740f734cb6",
+    "docs/ERA5_ALIGNED_PLAN.md": "72a877d5a9d144500c6c5b5b66e7fb859bb65f9ac81b640972e9eb4296b13b1e",
+    "docs/ERA5_READINESS.md": "93fdc349e4e3decfd2b028b5662a5cfc7b7c8017051d35d791209bbea0fa2fc4",
+    "docs/KNOWLEDGE_WORKFLOW.md": "0637f0ca7dbc299381053392e6e798d08485e6ab858dc798f5ae6175cf62a204",
+    "docs/LOCAL_DATA.md": "34c27f85a78a9a9b8de3da9ab072098cbc4dc74da142ce50107f0bf699a213f3",
+    "docs/PROJECT_STATUS.md": "e359601bb788301ed397a1833ccf741a5de72dac3e568548d92ac397cacaacf8",
+    "docs/REVIEW_FIX.md": "9675736a0a20cde8b0895346fb092376180d28c238b2686c90eae4318cfbecd9",
+    "docs/VERIFICATION.md": "523d69decfe635792b45579c24b30bc89404458b08c3da1a60a756822ff14e8d",
+    "evidence/pytest.txt": "14325f8a0adb7ba556755b9bbc508331992d44b1da79f1a1c8d4e21aa4f39710",
+    "evidence/review_fix/pytest.txt": "ad0b02341ea34973bba38f4f86ccaf42cc84d6571b58dca9d61e3767edc6fc4a",
+    "requirements-tested.txt": "c24dad05af079e2d986ff42518e5befa108688695d4f993e78d77712ded2c5e8",
+    "benchmarks/reference_scores.json": "601832bf9761f155b06b18f424c61a9bca4745e46a4785e2c7eeb21e45077505",
+    "benchmarks/development_targets.json": "bb25b67ba7478ac10e39e331a0d3c28d43437343258932d5c6fa1ba3531f585c",
+    "evidence/benchmarks/plan_check.json": "4e3cfb164d01304c236a568860a0c63b7d7adcc6c180bc8b4a8addaa26c3b82d",
+    "evidence/benchmarks/execution.json": "9417bd192d707e804c35b7d1c6fb0f210da86a087bd9f27bf5a6664450713170",
+    "evidence/knowledge/management_state.json": "773d48a861a3399a1f3b9e7d8408644cc176e4bf935899bc79fe1355606834c6",
+    "evidence/knowledge/integration_check.json": "d0543f5c9a133778d72cb9c8d5abe4cda125d5a8371d88f9c3e776cf318b32ce",
+    "evidence/knowledge/rocss_threshold_provenance.json": "dcf3aada71bcb76f1417a2e4b22deb80b902a4975faf8ffbd7bdeb5787da0353"
+  },
+  "auxiliary_sources": {
+    "benchmarks/reference_scores.json": "601832bf9761f155b06b18f424c61a9bca4745e46a4785e2c7eeb21e45077505",
+    "benchmarks/development_targets.json": "bb25b67ba7478ac10e39e331a0d3c28d43437343258932d5c6fa1ba3531f585c",
+    "evidence/benchmarks/plan_check.json": "4e3cfb164d01304c236a568860a0c63b7d7adcc6c180bc8b4a8addaa26c3b82d",
+    "evidence/benchmarks/execution.json": "9417bd192d707e804c35b7d1c6fb0f210da86a087bd9f27bf5a6664450713170",
+    "evidence/knowledge/management_state.json": "773d48a861a3399a1f3b9e7d8408644cc176e4bf935899bc79fe1355606834c6",
+    "evidence/knowledge/integration_check.json": "d0543f5c9a133778d72cb9c8d5abe4cda125d5a8371d88f9c3e776cf318b32ce",
+    "evidence/knowledge/rocss_threshold_provenance.json": "dcf3aada71bcb76f1417a2e4b22deb80b902a4975faf8ffbd7bdeb5787da0353"
+  },
+  "working_tree_inputs": true,
+  "policy_files": {
+    ".graphifyignore": "afb1dc6095c8bdf20c295e928bac2d9f14dc51d8862a6fcc31d0884d5ceca752",
+    ".gitignore": "7df5d17f9f487f066748ba70c59c7fd59fb56cd5a47ac8ab5da876c0ab42de04"
+  }
+}
