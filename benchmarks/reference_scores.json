@@ -13,6 +13,33 @@
       "license": "CC-BY-4.0",
       "acquired": "2026-10-11",
       "evidence_class": "primary_paper_table_transcription",
+      "metric": "RMSE",
+      "variable_levels_hpa": {
+        "geopotential": [
+          500
+        ],
+        "temperature": [
+          850
+        ],
+        "specific_humidity": [
+          700
+        ],
+        "u": [
+          850
+        ],
+        "v": [
+          850
+        ],
+        "t2m": [
+          null
+        ],
+        "u10": [
+          null
+        ],
+        "v10": [
+          null
+        ]
+      },
       "period": "2020",
       "initialization_hours_utc": [
         0,
@@ -48,8 +75,18 @@
       "locator": "Section 6, Conclusions; sections 2.2 and 3.1",
       "license": "CC-BY-4.0",
       "acquired": "2026-10-11",
+      "metadata_verified": "2026-10-12",
       "evidence_class": "primary_paper_reported_result",
+      "metric": "ROCSS",
+      "variable_levels_hpa": {
+        "tp24h_wet90": [
+          null
+        ]
+      },
       "period": "2020",
+      "lead_hours": [
+        120
+      ],
       "initialization_hours_utc": [
         0,
         12
@@ -59,13 +96,53 @@
       "target": "ERA5 precipitation",
       "temporal_statistic": "24h accumulated precipitation",
       "event_definition": "Grid-specific TP24h > 90th percentile estimated from 2020 target data",
+      "predictor_transform": "Deterministic TP24h forecasts are converted to I(TP24h > q); ensemble forecasts are converted to exceedance probabilities using count(TP24h > q)/(M+1) (Weibull plotting position). ROCSS uses all forecast-probability thresholds.",
+      "threshold_comparison": "> (strict; equality is classified as non-event)",
       "threshold_fit_period": "2020 (same year as evaluation; historical retrospective protocol)",
+      "spatial_aggregation": "Compute ROCSS at each grid cell, then calculate global ROCSS with area weighting; not a pooled sample contingency table.",
       "metric_definition": "ROCSS = 2 * AUROC - 1; higher is better; NOT accuracy or detection probability",
+      "threshold_hash": "sha256:4c931d296cac13d6d83316a1d203ec34633f37ce944e36d5fb09120be6127667",
+      "threshold_file": "Threshold_tp24h_150_2020_era5.nc",
+      "threshold_file_size_bytes": 1057420,
+      "threshold_artifact_acquired": "2026-10-12",
+      "threshold_quantiles": [
+        0.8,
+        0.85,
+        0.9,
+        0.93,
+        0.95,
+        0.96,
+        0.97,
+        0.98,
+        0.99
+      ],
+      "threshold_grid_dimensions": {
+        "latitude": 121,
+        "longitude": 240
+      },
+      "threshold_archive": {
+        "doi": "10.5281/zenodo.15066898",
+        "file": "Thresholds.tar.gz",
+        "zenodo_file_md5": "e68b0b3653915b57756621b5202708d1",
+        "metadata_checked": "2026-10-12"
+      },
+      "threshold_hash_status": "Downloaded from the listed Zenodo archive on 2026-10-12; archive MD5 matched the Zenodo file record, and SHA-256 is recorded for the extracted NetCDF threshold array.",
+      "single_class_cell_policy": null,
+      "single_class_cell_policy_status": "Unknown: the article does not specify how cells with only observed events or only observed non-events are handled; the archived implementation has not been verified for this edge case.",
+      "source_code": {
+        "doi": "10.5281/zenodo.15067282",
+        "version": "v0.3.0",
+        "zenodo_record_modified": "2025-03-23",
+        "status": "Archived code and README identified; the article does not pin an exact code revision to the reported table values, and this checkout has not reproduced the results or verified edge-case handling."
+      },
+      "local_comparability_status": "Blocked pending verification of the single-class-cell policy, exact code revision used for the reported table values, and forecast/sample lineage.",
       "raw_forecasts_recomputed_here": false,
       "raw_metric_files_decoded_here": false,
       "allowed_use": "Historical extreme-event reference only. Prospective thresholds must use training/calibration data; results then use a new protocol ID.",
       "unknown_for_local_comparison": [
         "exact 24h lead endpoint convention in raw artifact",
+        "exact source code revision used for the reported values",
+        "single-class grid-cell handling policy",
         "checkpoint digests",
         "sample hashes"
       ]

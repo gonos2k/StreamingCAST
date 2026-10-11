@@ -1,0 +1,19 @@
+{
+  "verified_on": "2026-10-12",
+  "source_paper_url": "https://gmd.copernicus.org/articles/18/5781/2025/gmd-18-5781-2025.html",
+  "zenodo_record_url": "https://zenodo.org/records/15066898",
+  "zenodo_record_doi": "10.5281/zenodo.15066898",
+  "archive_download_url": "https://zenodo.org/api/records/15066898/files/Thresholds.tar.gz/content",
+  "archive_filename": "Thresholds.tar.gz",
+  "archive_local_path": "/tmp/Thresholds.tar.gz",
+  "archive_size_bytes": 2621275,
+  "zenodo_record_expected_md5": "e68b0b3653915b57756621b5202708d1",
+  "actual_archive_md5": "e68b0b3653915b57756621b5202708d1",
+  "extracted_threshold_filename": "Threshold_tp24h_150_2020_era5.nc",
+  "extracted_threshold_local_path": "/tmp/hydro-thresholds/Threshold_tp24h_150_2020_era5.nc",
+  "extracted_threshold_size_bytes": 1057420,
+  "extracted_threshold_sha256": "4c931d296cac13d6d83316a1d203ec34633f37ce944e36d5fb09120be6127667",
+  "raw_forecast_verification": "NOT_RUN",
+  "single_class_cell_policy": null,
+  "single_class_cell_policy_status": "Unknown; the article does not specify it, and the archived implementation was not checked for this edge case."
+}

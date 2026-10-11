@@ -1,0 +1,19 @@
+# Keep the graph focused on original project sources, not derived views.
+wiki/
+graphify-out/
+runs/
+data/
+local_data/
+raw/
+evidence/**/*.json
+benchmarks/*.json
+*.zarr/
+*.nc
+*.grib
+*.grb
+*.grib2
+*.zip
+.cdsapirc
+.env*
+# Packaging metadata is not part of the executable Python AST corpus.
+pyproject.toml

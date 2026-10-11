@@ -1,0 +1,77 @@
+{
+  "schema": "streamingcast-benchmark-review-fix-check-v1",
+  "date": "2026-10-12",
+  "revision": "3735c75feef5312f65c984f2b11ce3b49aac464c",
+  "regression": {
+    "command": "uv run --no-project --with 'numpy>=2,<3' --with 'torch>=2.10,<2.11' --with 'pytest>=8,<10' --with 'scipy>=1.14,<2' python -m pytest -q",
+    "expected_composition": {
+      "verified_existing_tests": 107,
+      "inventory_tests": 8,
+      "benchmark_tests": 66,
+      "total": 181
+    },
+    "passed": 181,
+    "warnings": 18,
+    "warning_type": "DeprecationWarning: torch.jit.script is deprecated",
+    "subtests_passed": 2,
+    "elapsed_seconds": 5.78,
+    "status": "PASS"
+  },
+  "environment": {
+    "python": "3.13.13",
+    "numpy": "2.5.4",
+    "torch": "2.10.0",
+    "pytest": "9.1.1",
+    "scipy": "1.18.1",
+    "provisioning": "uv --no-project; no project venv or lockfile edits"
+  },
+  "benchmark_check": {
+    "command": "PYTHONPATH=src uv run --no-project --with 'numpy>=2,<3' --with 'torch>=2.10,<2.11' --with 'pytest>=8,<10' --with 'scipy>=1.14,<2' python scripts/check_benchmarks.py --out /tmp/streamingcast-review-fix-benchmark-check.json",
+    "status": "PASS",
+    "output_strict_json_no_nan": true,
+    "catalog_strict_json_no_nan": true,
+    "record_count": 63,
+    "record_count_unchanged_from_origin_main": true,
+    "record_values_unchanged_from_origin_main": true,
+    "catalog_sha256": "930dc3ebd02a6045e1c73d64e8860bb1d789bb69218c1e9c14d54dc39d35f165",
+    "catalog_counts": {
+      "records": 63,
+      "counts": {
+        "RMSE": 60,
+        "ROCSS": 3
+      },
+      "sources": 2,
+      "forecast_skill_approved": false
+    },
+    "matches_plan_check_non_environment_values_except_catalog_hash": true,
+    "catalog_hash_changed_with_metadata": true,
+    "real_weather_arrays_read": false,
+    "forecast_models_executed": false,
+    "documented_inventory_reinspected_here": false,
+    "forecast_skill_approved": false
+  },
+  "source_sha256": {
+    "AGENTS.md": "839f061a799fb0cc5a611dad084aa6a291b701130ac10f7bf07daedcd9752254",
+    "src/streamingcast/benchmark_contract.py": "6f29faef9c693dc9bc7398f6f3724e43d9694a53a8ada398067ee9ffb638d3d0",
+    "tests/test_benchmark_contract.py": "51d9b5eb44f3240b72b9e72563a11c96f4a15795b39d2844b976018acf71b391",
+    "benchmarks/reference_scores.json": "601832bf9761f155b06b18f424c61a9bca4745e46a4785e2c7eeb21e45077505",
+    "docs/BENCHMARK_PROTOCOL.md": "9c50ac73b23e4c2b81afd7eb54ba0fa621bd548f78f9d69674676beec6f94b02",
+    "docs/BENCHMARK_REVIEW_FIX.md": "c0462074a0f5915f1af4b625d157ffa6fc5725daf05a7e9362ea0232f40f7154",
+    "scripts/check_benchmarks.py": "fa88da5750bd2032e69480c87e161abc0c037dcc8c8828acc11605f7d30c420e",
+    "evidence/benchmarks/plan_check.json": "4e3cfb164d01304c236a568860a0c63b7d7adcc6c180bc8b4a8addaa26c3b82d"
+  },
+  "scope_limits": {
+    "raw_era5_payloads_read": false,
+    "actual_forecast_model_evaluation": false
+  },
+  "revision_context": {
+    "kind": "local base merge checkout; not a published source commit",
+    "source_parents": [
+      "b34cd3fd49a4eead90b977327672158087b0799e",
+      "815751dbbeae6fb69b54f7980ec3c3ab70d6d577"
+    ],
+    "base_git_tree": "4ae0290a701f2b2b6f8182f582031a6cff8c5b22",
+    "working_source_changes": true,
+    "reproduction": "For the post-review run, use source_sha256 rather than assuming revision alone identifies tested working files."
+  }
+}

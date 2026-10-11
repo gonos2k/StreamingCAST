@@ -1,0 +1,45 @@
+{
+  "validated_at_utc": "2026-10-11T15:49:31.015740+00:00",
+  "status": "PASS",
+  "checks": {
+    "pinned_schema_and_templates": "PASS",
+    "content_pages": 19,
+    "immutable_source_pages": 14,
+    "historical_sources_resolved": [
+      {
+        "page": "wiki/sources/comparison-acceptance.md",
+        "source": "docs/BENCHMARK_PROTOCOL.md",
+        "commit": "009a363584aee7d7d053bbfeb284fc476e049039",
+        "sha256": "c3aad6c830613a67802173bc860580504ed8970728d9e0a6f1c40d3c909f974c"
+      },
+      {
+        "page": "wiki/sources/project-status.md",
+        "source": "docs/PROJECT_STATUS.md",
+        "commit": "f7f21acdd83b90f5239f79aab1fe4fb2d0231e6f",
+        "sha256": "4259799f2a72b5eacf6f44b318b264fe121cbd4991c17347c207935c7ca6475d"
+      },
+      {
+        "page": "wiki/sources/published-score-register.md",
+        "source": "benchmarks/reference_scores.json",
+        "commit": "009a363584aee7d7d053bbfeb284fc476e049039",
+        "sha256": "a966299f955bf2427c0d093bdd733485c221a869fadcc77dcf082bfc9c4ad739"
+      }
+    ],
+    "wiki_link_lint": "PASS",
+    "markdown_pages_checked": 32,
+    "graph_primary_inputs": 36,
+    "graph_auxiliary_inputs": 7,
+    "policy_hashes": 2,
+    "incremental_manifest_entries": 36,
+    "graph_nodes": 323,
+    "graph_edges": 790,
+    "communities": 11,
+    "explicit_doc_code_bridges": 20,
+    "graph_endpoints_and_confidence": "PASS",
+    "report_mirror": "PASS",
+    "tested_source_hashes": "PASS",
+    "full_regression_passed": 181,
+    "published_63_rows_unchanged": "PASS"
+  },
+  "scope": "Engineering/knowledge validation only; actual forecast skill and full ERA5 payload quality remain unvalidated."
+}
