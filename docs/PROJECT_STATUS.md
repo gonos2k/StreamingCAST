@@ -1,28 +1,36 @@
-# StreamingCAST: project state and P0 scope
+# StreamingCAST P0 status
 
-Updated: 2026-10-11. Tracking issue: #1.
+Tracking issue: #1. Updated: 2026-10-11.
 
-## Objective
+## Implemented in this change
 
-전지구 실제 1시간 상태전이, 지상강수, 24시간·12시간 주기 검증을 유지하면서 미분가능한 수치예보시스템과 연결한다. 코드·설계·시험·근거의 기준 저장소는 gonos2k/StreamingCAST다.
+- v0.1.1 time_contract.py/products.py selected migration with source hashes.
+- D83/1h rain contract, immutable issuance snapshot, late revision and replay handling.
+- Local-only NPZ boundary; no real-data download or upload.
+- Pure tensor toy forecast API; JVP/VJP, weighted adjoint, finite difference and Taylor checks.
+- 3-parameter manufactured learning, 240h independent-initial-state forecast, diurnal/semidiurnal and restart checks.
+- Source, tests, environment and numerical evidence in the repository.
 
-## Current evidence and limits
+## Approval boundary
 
-- 이 문서는 구현 계획과 상태를 기록한다. 새로운 예측모델이나 미분 연결부의 구현 완료를 뜻하지 않는다.
-- 이전 D83 부분모델은 실행·재시작을 확인했지만 240시간 합성 성능은 지속예보보다 나빴다. 해당 실패를 이관 시 보존한다.
-- 기존 코드 이관, 새로운 JVP/VJP 및 가중 수반 시험, 실제 ERA5 연결은 아직 이 문서의 근거로 완료 처리하지 않는다.
-- 실제 기상예측 성능, LAYA 가중치 추론, B200 학습, 외부 미분가능 수치예보모델 통합은 미승인이다.
+`P0_contracts = PASS`, `P0_toy_differentiability = PASS`, `P0_manufactured_learning = PASS`.
+These labels are limited to evidence/proof.json and the tests in this commit.
 
-## Next bounded implementation
+Previous D83 240h synthetic prediction was worse than persistence. That failure is preserved, NOT fixed by this toy.
+D83 neural forecasting, ERA5 preprocessing/streaming, full scalar/vector remapping, actual tidal and rainfall skill,
+LAYA weights/policy, B200, and external differentiable NWP integration remain NOT_RUN/UNAPPROVED.
+The new model is not a replacement for the original D83 model.
 
-1. 이전 패키지의 선택한 코드·시험을 원본 해시와 함께 이관한다.
-2. 자료의 유효시각·도착시각·발행시각과 1시간 누적강수 통계를 분리한다.
-3. 입출력·자료 선택·결과 확정과 순수 텐서 예보 전이함수를 분리한다.
-4. 작은 물리 부분모델에서 입력상태·학습계수의 JVP/VJP, 방향 유한차분, 가중 수반 항등식과 Taylor 검사를 수행한다.
-5. 실행한 범위와 미통과 항목을 PR에 기록하고 검토 후에만 확대한다.
+## Next bounded work
 
-## Repository workflow
+1. User-side local preprocessing produces canonical records and verified geometry/stats hashes.
+2. An adapter converts that schema into the selected model's native tensors without breaking gradients.
+3. Add a spatial physical model and compare tangent/adjoint/Taylor with independent references.
+4. Integrate the previously patched D83 neural core only after its separate long-rollout failure is diagnosed.
+5. Compare fixed/unshared and looped structures, then optional LAYA. No automatic production approval.
 
-작업 브랜치에서 커밋하고 PR로 검토한다. main의 직접 변경이나 자동 병합을 하지 않는다. 모델 가중치·대용량 자료·비밀정보는 이 상태 문서에 포함하지 않는다.
+## Repository operation
 
-GitHub 연결 도구의 파일 쓰기, 터미널의 git 인증, 학습 서버 접속 권한은 서로 별개다. 한 경로의 성공으로 다른 경로가 설정되었다고 판단하지 않는다.
+Code changes go to the work branch and a review PR, not a direct main overwrite.
+No model arrays, real data, credentials, heavy CI, GPU job submission or automatic merge is added.
+Only a local SQLite ledger is implemented: distributed exactly-once publication is NOT claimed.
