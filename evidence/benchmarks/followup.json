@@ -1,0 +1,98 @@
+{
+  "schema": "streamingcast-pr6-followup-v1",
+  "date": "2026-10-12",
+  "base_commit": "a43342d4e20548702dba408ed71b5728d9ba8cea",
+  "code_test_commit": "556dc19efaa3d71910be3cfe1eb81faef37b7efc",
+  "main_observed_at_start": "b34cd3fd49a4eead90b977327672158087b0799e",
+  "scope": "All runtime src/scripts/tests, benchmark JSON and packaging matched; no full wiki/graph checkout or science certification.",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.10.0+cpu",
+    "pytest": "9.0.2",
+    "device": "CPU"
+  },
+  "pre_fix_probes": {
+    "matched_wrong_units": "IMPROVED",
+    "matched_wrong_aggregation": "IMPROVED",
+    "matched_wrong_variable": "IMPROVED",
+    "complex_prediction_mse": [
+      0.0
+    ],
+    "warnings": [
+      "Casting complex values to real discards the imaginary part"
+    ],
+    "nonzero_error_1e-200_mse": [
+      0.0
+    ],
+    "representable_subnormal_reference": 5e-324,
+    "representable_subnormal_returned": [
+      0.0
+    ]
+  },
+  "upstream_regression": {
+    "passed": 181,
+    "warnings": 18,
+    "subtests": 2,
+    "exit_code": 0
+  },
+  "red_new_tests_against_upstream": {
+    "failed": 21,
+    "passed": 7,
+    "exit_code": 1,
+    "expected_failure": true
+  },
+  "fixed_focused_tests": {
+    "passed": 94,
+    "new_tests": 28
+  },
+  "fixed_regression": {
+    "passed": 209,
+    "warnings": 18,
+    "subtests": 2,
+    "exit_code": 0,
+    "elapsed_seconds": 10.78
+  },
+  "preserved_examples": {
+    "valid_relative_rmse_change": -0.1,
+    "large_area_case_mse": [
+      0.0,
+      0.25
+    ],
+    "equal_large_score_relative_change": 0.0,
+    "zero_baseline_reason": "ZERO_BASELINE_MEAN"
+  },
+  "published_scores": {
+    "RMSE": 60,
+    "ROCSS": 3,
+    "all_values_and_missing_rows_unchanged": true,
+    "current_file_sha256": "601832bf9761f155b06b18f424c61a9bca4745e46a4785e2c7eeb21e45077505"
+  },
+  "changed_runtime_files": {
+    "src/streamingcast/benchmark_contract.py": {
+      "bytes": 19179,
+      "sha256": "d8669f05826e37ad90f8611f9f204d6bb18ed594abe70ce767ff9ad548193821",
+      "git_blob_sha1": "96c3a69cf0b71297e11f31d21c720803990b636d"
+    },
+    "tests/test_benchmark_followup.py": {
+      "bytes": 4308,
+      "sha256": "83399b0518af6b91491e8c4bd6705863c2d17a844fa42491aff8a705ec4f1616",
+      "git_blob_sha1": "7012d35bd9c9af81daba9f1fbcc11953f659886d"
+    }
+  },
+  "limits": {
+    "real_era5_processed": false,
+    "new_weather_model_trained": false,
+    "external_forecast_models_run": false,
+    "LAYA_run": false,
+    "GPU_run": false,
+    "weather_skill_approved": false,
+    "main_modified_or_merged": false,
+    "graph_regenerated": false,
+    "full_knowledge_lint": false,
+    "graph_refresh": "PENDING_AFTER_SOURCE_CHANGE"
+  },
+  "base_file_match_count": 25,
+  "base_file_match_scope": "All 13 src files, 3 scripts, 5 existing tests, 2 benchmark JSON files and 2 Python configuration files matched Git blob hashes at a43342d. Full manifest is preserved in the downloadable reproduction bundle."
+}
