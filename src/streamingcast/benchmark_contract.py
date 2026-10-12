@@ -35,6 +35,34 @@ CATALOG_VARIABLES = {
 }
 
 
+# Local numeric metrics have explicit physical definitions, separate from paper axes.
+# Unit choices are declarations only: this evaluator NEVER converts values.
+LOCAL_VARIABLES = {
+    name: ((units,), "pressure_hpa" if pressure else "surface", "instantaneous")
+    for name, (units, pressure, metric) in CATALOG_VARIABLES.items() if metric == "RMSE"
+}
+LOCAL_VARIABLES.update({
+    "specific_humidity": (("g kg-1", "kg kg-1"), "pressure_hpa", "instantaneous"),
+    "omega": (("Pa s-1",), "pressure_hpa", "instantaneous"),
+    "msl": (("Pa", "hPa"), "surface", "instantaneous"),
+    "sp": (("Pa", "hPa"), "surface", "instantaneous"),
+    "tp": (("mm", "m"), "surface", "accumulation"),
+})
+RMSE_AGGREGATION = "mean_case_area_mse_then_sqrt"
+
+
+def _real_array(value, name: str) -> np.ndarray:
+    """Do not silently discard imaginary parts or coerce labels into measurements."""
+    try:
+        array = np.asarray(value)
+        if array.dtype.kind not in "fiu":
+            raise BenchmarkContractError(f"{name} must contain real numeric values")
+        with np.errstate(over="raise", invalid="raise", under="raise"):
+            return array.astype(np.float64, copy=False)
+    except (TypeError, ValueError, OverflowError, FloatingPointError) as exc:
+        raise BenchmarkContractError(f"Invalid real numeric array: {name}") from exc
+
+
 def _finite_number(value) -> bool:
     return type(value) in (int, float) and math.isfinite(value)
 
@@ -144,9 +172,11 @@ def require_matched_local(candidate: dict, baseline: dict) -> None:
                 raise BenchmarkContractError("Pressure level in hPa required")
         elif coordinate != "surface" or level is not None:
             raise BenchmarkContractError("Surface coordinate requires null level")
-        spec = CATALOG_VARIABLES.get(item["variable"])
-        if spec and spec[1] != (coordinate == "pressure_hpa"):
-            raise BenchmarkContractError("Variable and vertical coordinate disagree")
+        variable = item["variable"]
+        spec = LOCAL_VARIABLES.get(variable) if isinstance(variable, str) else None
+        if (spec is None or item["units"] not in spec[0]
+                or coordinate != spec[1] or item["temporal_statistic"] != spec[2]):
+            raise BenchmarkContractError("Unregistered local variable/unit/coordinate/time definition")
         start, end = item["interval_start_offset"], item["interval_end_offset"]
         # Offsets are integer hours relative to initialization, not to the lead.
         if type(start) is not int or type(end) is not int or not 0 <= start <= end == lead:
@@ -182,8 +212,8 @@ def case_area_mse(prediction, target, weights, mask) -> np.ndarray:
     Any missing prediction on the valid domain is a failure, not a dropped cell.
     This is our local metric contract, not a claim of bitwise WB-X equivalence.
     """
-    p, y = np.asarray(prediction, dtype=np.float64), np.asarray(target, dtype=np.float64)
-    m, w = np.asarray(mask), np.asarray(weights, dtype=np.float64)
+    p, y = _real_array(prediction, "prediction"), _real_array(target, "target")
+    m, w = np.asarray(mask), _real_array(weights, "weights")
     if p.shape != y.shape or p.ndim < 2 or not p.size:
         raise BenchmarkContractError("Matching nonempty [case,spatial...] required")
     if m.dtype != np.bool_ or m.shape != p.shape:
@@ -210,7 +240,11 @@ def case_area_mse(prediction, target, weights, mask) -> np.ndarray:
             diff = np.where(m, p, 0.0) - np.where(m, y, 0.0)
             # Weight before squaring so representable weighted errors need not overflow.
             error = diff * np.sqrt(normalized)
-            out = np.sum(error * error, axis=axes)
+            squared = error * error
+            # Reject arithmetic loss, not exact dry/perfect-forecast zeros.
+            if ((diff != 0) & (error == 0)).any() or ((error != 0) & (squared == 0)).any():
+                raise BenchmarkContractError("Nonzero metric contribution underflow; rescale explicitly")
+            out = np.sum(squared, axis=axes)
         except FloatingPointError as exc:
             raise BenchmarkContractError("Metric arithmetic overflow") from exc
     if not np.isfinite(out).all():
@@ -231,7 +265,9 @@ def paired_rmse_check(candidate_mse, baseline_mse, block_ids,
     require_matched_local(candidate_contract, baseline_contract)
     if candidate_contract["metric_definition"] != "RMSE":
         raise BenchmarkContractError("This gate evaluates RMSE only")
-    a, b = np.asarray(candidate_mse, float), np.asarray(baseline_mse, float)
+    if candidate_contract["aggregation"] != RMSE_AGGREGATION:
+        raise BenchmarkContractError("This gate requires mean case-area MSE followed by square root")
+    a, b = _real_array(candidate_mse, "candidate_mse"), _real_array(baseline_mse, "baseline_mse")
     ids = np.asarray(block_ids)
     if a.ndim != 1 or a.shape != b.shape or ids.shape != a.shape or not a.size:
         raise BenchmarkContractError("Matching nonempty case scores and block IDs required")
