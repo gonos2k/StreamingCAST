@@ -113,3 +113,17 @@
 - Graph report mirror synchronized; no pending schema proposals/receipts or new drift.
 - Receipt: graphify-out/validation.json. Weather skill and full ERA5 payload quality
   remain unvalidated; this work is submitted for review rather than merged to main.
+
+## [2026-10-12] follow-up | validate PR #6 and close remaining metric loopholes
+- Base: a43342d4e20548702dba408ed71b5728d9ba8cea. The 25 runtime/source/test/config
+  files matched their Git blob hashes. All 181 prior pytest cases were rerun.
+- New tests reproduced 21 failures with 7 passes against that unchanged base.
+  Local definition checks, strict real-array inputs and underflow refusal were
+  added on work/benchmark-followup-20261012; 94 focused and 209 total tests pass.
+- No forecast-model, real-data or independent-agent execution is claimed. Sources:
+  docs/BENCHMARK_FOLLOWUP.md and evidence/benchmarks/followup.json.
+- Public scores, native physics and inherited immutable Source pages were not changed.
+- hot.md records the next R0 task and pending graph/semantic refresh. Graphify,
+  kg-ingest, kg-update, kg-reflect and full kg-lint were not executed in this session.
+  Earlier graph counts and lint receipts remain scoped to the earlier snapshot.
+- Main and PR #6 were not modified or merged; review the stacked follow-up first.
